@@ -1,0 +1,42 @@
+.container-nav {
+    padding: 0.2rem 0.2rem;
+    
+  }
+ 
+  .nav li {
+    margin: 3px 4px;
+    display: inline;
+    /* padding: 0.3rem 0.2rem; */
+    font-weight: bold;
+  }
+
+  .nav a{
+    color:black;
+    margin: 3px 4px;
+  }
+
+  
+  .home-jpg{
+    width: 110px;
+    height: 60px;
+    position: absolute;
+    left: 15px;
+    top: 10px;
+
+    font-size: 30px;
+  }
+  .nav li:hover {
+    background-color: rgb(209, 202, 202);;
+    cursor: pointer;
+}
+.navRigth{
+  position: absolute;
+  top: 20px;
+  right: 16px;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}

@@ -1,0 +1,27 @@
+#edit-delete-buttons>a, #isFount, .likes {
+    background-color: #cec5c5; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  
+  #edit-delete-buttons>a:hover {
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+#isFount:hover{
+  text-transform: uppercase;
+    cursor: pointer;
+}
+
+.likes:hover{
+  text-transform: uppercase;
+  cursor: pointer;
+}

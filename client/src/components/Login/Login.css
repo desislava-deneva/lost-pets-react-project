@@ -1,0 +1,72 @@
+.login-wrapper {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background-image: url("/public/images/lost.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #ffffff;
+    background-size: 100% auto;
+    
+}
+
+
+.login {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 20px 30px;
+  border: 1px solid black;
+}
+.login-title {
+    font-size: 32px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    
+}
+
+.login-input {
+    color: #252525;
+    min-width: 200px;
+    min-height: 30px;
+    font-size: 24px;
+    border: 1px solid rgb(15, 15, 15);
+    padding-left: 10px;
+}
+
+.login-submit {
+    color: #252525;
+    min-width: 150px;
+    min-height: 40px;
+    font-size: 20px;
+    border: 1px solid rgb(15, 15, 15);
+    margin-top: 30px;
+}
+
+.login-submit:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+.login-input:hover {
+    background-color: rgb(216, 214, 214);
+    cursor: pointer;
+}
+
+/* .login-to-register-link {
+    font-weight: bold;
+    font-size: 24px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: var(--secondary-color)
+} */
+
+/* .login-to-register-link:hover {
+    text-decoration: underline;
+} */

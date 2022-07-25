@@ -1,0 +1,14 @@
+.home-list{
+    align-items: center;
+    height: 90vh;
+    background-image: url("https://i.pinimg.com/originals/30/8b/d8/308bd810b01cbfbc40b69c94352a6a4d.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 800px;
+    margin: 0;
+}
+
+.home-pets{
+    padding-top: 140px;
+}
+

@@ -1,0 +1,20 @@
+.pet {
+    width: 250px;
+    height: auto;
+    border: 1px solid black;
+    display: inline-block;
+    padding: 20px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: rgb(245, 238, 238);
+}
+
+.pet:hover {
+    background-color: rgb(209, 202, 202);;
+    cursor: pointer;
+}
+
+.imageList {
+    width: 230px;
+    height: 160px;
+}

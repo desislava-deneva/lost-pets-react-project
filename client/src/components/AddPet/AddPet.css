@@ -1,0 +1,64 @@
+.add {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    background-image: url("/public/images/lost.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+    flex-direction: column;
+}
+
+label{
+     font-size: 130%;
+}
+.pet-form{
+    border: 1px solid rgb(15, 15, 15);
+    padding: 25px;
+    width: 300px;
+    height: 550px;
+}
+
+.add-title {
+    font-size: 32px;
+    margin: 0px;
+}
+
+.add-form {
+    padding: 1px;
+    max-width: 700px;
+    margin: 0 auto;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+}
+
+.add-input {
+    color: #252525;
+    min-width: 0px;
+    font-size: 20px;
+    border: 1px solid rgb(15, 15, 15);
+    padding-left: 10px;
+    font-style: italic;
+}
+
+.add-submit {
+    color: #252525;
+    min-width: 150px;
+    min-height: 40px;
+    font-size: 20px;
+    border: 1px solid rgb(15, 15, 15);
+    margin-top: 30px;
+}
+
+.add-submit:hover {
+    background-color:rgb(216, 214, 214);;
+    cursor: pointer;
+}
+
+.add-input:hover {
+    background-color: rgb(216, 214, 214);;
+    cursor: pointer;
+}
+
