@@ -20,6 +20,7 @@ async function create(item) {
         dataLost: item.dataLost,
         img: item.img,
         description: item.description,
+        likes: 0,
         owner: item.owner
     });
 
@@ -34,7 +35,7 @@ async function getById(id) {
 
 async function updateById(existing, item) {
 
-         existing.name = item.name,
+        existing.name = item.name,
         existing.img = item.img,
         existing.dataLost = item.dataLost,
         existing.city = item.city,
@@ -42,11 +43,39 @@ async function updateById(existing, item) {
         existing.birthYear = item.birthYear,
         existing.description = item.description,
         existing.type = item.type,
-        existing.owner = existing.owner
+        existing.owner = existing.owner;
+        existing.likes = existing.likes;
         await existing.save();
 
 
     return existing;
+}
+
+async function like(userId, id){
+    const item =  await Item.findById(id);
+
+    console.log('Likess  '+  item.likes)
+
+    if(userId){
+        item.likes = Number(item.likes)+1;
+    }
+
+    await item.save();
+
+    return item;
+}
+
+async function unlike(userId, id){
+    const item =  await Item.findById(id);
+
+
+    if(userId){
+        item.likes = Number(item.likes)-1;
+    }
+
+    await item.save();
+
+    return item;
 }
 
 async function deleteById(id) {
@@ -60,5 +89,7 @@ module.exports = {
     create,
     getById,
     updateById,
+    like,
+    unlike,
     deleteById
 };

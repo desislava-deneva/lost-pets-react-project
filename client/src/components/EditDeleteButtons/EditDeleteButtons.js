@@ -4,9 +4,7 @@ import { useParams } from 'react-router-dom';
 import * as api from '../../api/data';
 
 export const EditDeleteButtons = (props) => {
-
-    const userId = sessionStorage.userId;
-    console.log(userId);
+    
     const params = useParams();
     const id = params.id;
     const navigate = useNavigate();

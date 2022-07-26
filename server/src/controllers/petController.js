@@ -52,7 +52,7 @@ router.put('/:id', preload(api), isOwner(), async (req, res) => {
     }
 });
 
-router.delete('/:id', preload(api),  isAuth(), isOwner(), async (req, res) => {
+router.delete('/:id', preload(api), isAuth(), isOwner(), async (req, res) => {
     const id = req.params.id;
 
     try {
@@ -64,5 +64,32 @@ router.delete('/:id', preload(api),  isAuth(), isOwner(), async (req, res) => {
     }
 });
 
+router.get('/:id/like', preload(api), isAuth(), async (req, res) => {
+    res.json(res.locals.item);
+})
+
+router.post('/:id/like', preload(api), isAuth(), async (req, res) => {
+    const id = req.params.id;
+    const userId = req.user._id;
+    try {
+        const item = await api.like(userId, id);
+        res.json(item)
+    } catch (err) {
+        console.error(err);
+        res.status(404).json({ message: err });
+    }
+})
+
+router.post('/:id/unlike', preload(api), isAuth(), async (req, res) => {
+    const id = req.params.id;
+    const userId = req.user._id;
+    try {
+        const item = await api.unlike(userId, id);
+        res.json(item)
+    } catch (err) {
+        console.error(err);
+        res.status(404).json({ message: err });
+    }
+})
 
 module.exports = router;

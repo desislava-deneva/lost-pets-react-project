@@ -10,7 +10,7 @@ const itemSchema = new Schema({
     neighborhood: { type: String, required: true, minlength: [3, 'The Neighborhood should be at least 3 characters long'] },
     dataLost: { type: String, required: true, minlength: [10, 'The Date should be at least 10 characters long'] },
     img: {
-        type: String,required: true, validate: {
+        type: String, required: true, validate: {
             validator(value) {
                 return URL_PATTERN.test(value)
             },
@@ -18,6 +18,7 @@ const itemSchema = new Schema({
         }
     },
     description: { type: String, maxlength: [80, 'Description must be max 80 characters long'] },
+    likes: { type: Number, default: 0 },
     owner: { type: ObjectId, ref: 'User', required: true },
 });
 
