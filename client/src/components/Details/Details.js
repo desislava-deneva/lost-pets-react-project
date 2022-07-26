@@ -10,7 +10,6 @@ export const Details = (props) => {
     const [pet, setPet] = useState({});
     const userId = sessionStorage.userId;
     const params = useParams();
-    console.log(params);
     const id = params.id;
     useEffect(() => {
         api.getPetById(id)
@@ -19,6 +18,8 @@ export const Details = (props) => {
             console.log(pet);
         })
     }, []);
+
+    
 
     const [isFounded, setIsFounded] = useState(false);
 

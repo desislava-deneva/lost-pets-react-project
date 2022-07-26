@@ -7,8 +7,10 @@ module.exports = {
         }
     },
     isOwner: () => (req, res, next) => {
+        console.log(res.locals.item +  '   item ')
         if (!req.user) {
             res.status(401).json({ message: 'Please log in' });
+            
         } else if (req.user._id == res.locals.item.owner) {
             next();
         } else {

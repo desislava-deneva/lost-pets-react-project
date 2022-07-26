@@ -27,11 +27,7 @@ router.post('/', isAuth(), async (req, res) => {
         owner: req.user._id
     };
 
-    
-    console.log(req.user._id)
-
-    
-
+    console.log(item)
     try {
         const result = await api.create(item);
         res.json(result);
@@ -56,7 +52,7 @@ router.put('/:id', preload(api), isOwner(), async (req, res) => {
     }
 });
 
-router.delete('/:id', isAuth(), isOwner(), async (req, res) => {
+router.delete('/:id', preload(api),  isAuth(), isOwner(), async (req, res) => {
     const id = req.params.id;
 
     try {

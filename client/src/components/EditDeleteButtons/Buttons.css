@@ -1,4 +1,4 @@
-#edit-delete-buttons>a, #isFount, .likes {
+#edit-delete-buttons>a, #isFount {
     background-color: #cec5c5; /* Green */
     border: none;
     color: white;
@@ -19,9 +19,4 @@
 #isFount:hover{
   text-transform: uppercase;
     cursor: pointer;
-}
-
-.likes:hover{
-  text-transform: uppercase;
-  cursor: pointer;
 }

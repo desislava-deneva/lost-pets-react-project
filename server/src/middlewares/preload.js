@@ -2,6 +2,7 @@ module.exports = (api) => async (req, res, next) => {
     const id = req.params.id;
 
     const item = await api.getById(id);
+    console.log(item)
     if (item) {
         res.locals.item = item;
         next();

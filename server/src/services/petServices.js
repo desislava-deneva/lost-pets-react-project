@@ -42,7 +42,7 @@ async function updateById(existing, item) {
         existing.birthYear = item.birthYear,
         existing.description = item.description,
         existing.type = item.type,
-        existing.owner = item.owner
+        existing.owner = existing.owner
         await existing.save();
 
 
@@ -50,6 +50,8 @@ async function updateById(existing, item) {
 }
 
 async function deleteById(id) {
+    const item = Item.findByIdAndDelete(id);
+    console.log(item)
     return await Item.findByIdAndDelete(id);
 }
 
