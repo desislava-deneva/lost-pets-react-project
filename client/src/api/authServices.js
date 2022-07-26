@@ -1,10 +1,10 @@
-export const logUser = (username)=>{
+export const setUser = (username)=>{
     sessionStorage.setItem('username', username)
 }
 
 export const getUser = ()=>{
     let user = sessionStorage.getItem('username');
-    console.log(user);
+    
 
     return  user;
 }

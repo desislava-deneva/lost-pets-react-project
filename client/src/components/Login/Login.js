@@ -5,7 +5,6 @@ import * as api from '../../api/data'
 
 
 export const Login = ({
-    onLogin
 }) => {
     const navigate = useNavigate();
 

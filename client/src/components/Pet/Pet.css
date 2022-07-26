@@ -13,6 +13,11 @@
     background-color: rgb(209, 202, 202);;
     cursor: pointer;
 }
+p{
+    min-height: 100px;
+    display: flex;
+
+}
 
 .imageList {
     width: 230px;
