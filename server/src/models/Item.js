@@ -18,7 +18,7 @@ const itemSchema = new Schema({
         }
     },
     description: { type: String, maxlength: [80, 'Description must be max 80 characters long'] },
-    likes: { type: Number, default: 0 },
+    likes: { type: [ObjectId], ref: 'User', default: [] },
     owner: { type: ObjectId, ref: 'User', required: true },
 });
 

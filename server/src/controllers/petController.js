@@ -23,6 +23,7 @@ router.post('/', isAuth(), async (req, res) => {
         neighborhood: req.body.neighborhood,
         dataLost: req.body.dataLost,
         img: req.body.img,
+        likes: [],
         description: req.body.description,
         owner: req.user._id
     };

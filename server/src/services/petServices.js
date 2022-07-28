@@ -4,7 +4,6 @@ const Item = require('../models/Item');
 async function getAll(query) {
     if (query) {
         const userId = query.split('=')[1].slice(1, -1);
-        console.log(userId)
         return Item.find({ owner: userId });
     }
     return Item.find({});
@@ -14,13 +13,13 @@ async function create(item) {
     const result = new Item({
         type: item.type,
         name: item.name,
-        birthYear:item.birthYear,
+        birthYear: item.birthYear,
         city: item.city,
         neighborhood: item.neighborhood,
         dataLost: item.dataLost,
         img: item.img,
         description: item.description,
-        likes: 0,
+        likes: [],
         owner: item.owner
     });
 
@@ -35,7 +34,7 @@ async function getById(id) {
 
 async function updateById(existing, item) {
 
-        existing.name = item.name,
+    existing.name = item.name,
         existing.img = item.img,
         existing.dataLost = item.dataLost,
         existing.city = item.city,
@@ -44,20 +43,23 @@ async function updateById(existing, item) {
         existing.description = item.description,
         existing.type = item.type,
         existing.owner = existing.owner;
-        existing.likes = existing.likes;
-        await existing.save();
+    existing.likes = existing.likes;
+    await existing.save();
 
 
     return existing;
 }
 
-async function like(userId, id){
-    const item =  await Item.findById(id);
+async function like(userId, id) {
+    const item = await Item.findById(id);
 
-    console.log('Likess  '+  item.likes)
+    console.log('Likess  ' + item.likes)
 
-    if(userId){
-        item.likes = Number(item.likes)+1;
+    if (userId && !item.likes.includes(userId)) {
+        item.likes.push(userId)
+        console.log(item.likes)
+    } else {
+        throw ("You cat't like this item again")
     }
 
     await item.save();
@@ -65,12 +67,14 @@ async function like(userId, id){
     return item;
 }
 
-async function unlike(userId, id){
-    const item =  await Item.findById(id);
+async function unlike(userId, id) {
+    const item = await Item.findById(id);
 
-
-    if(userId){
-        item.likes = Number(item.likes)-1;
+    if (userId && item.likes.includes(userId)) {
+        const index = item.likes.indexOf(userId);
+        if (index > -1) { 
+            item.likes.splice(index, 1); 
+        }
     }
 
     await item.save();

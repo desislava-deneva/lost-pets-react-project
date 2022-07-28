@@ -15,24 +15,29 @@ export const LikeButton = () => {
   const [liked, setLiked] = useState(null);
   const [clicked, setClicked] = useState(false);
   const [likes, setLikes] = useState(0);
-
   const params = useParams();
   const id = params.id;
 
+  useEffect(()=>{
+    api.getLikesById(id)
+    .then(data=>{
+      console.log(data)
+      setLikes(data.likes.length);
+    })
+  })
+
   const likeHandler = (isCliked) => {
-   
     if (isCliked) {
-      setLikes(oldLikes => oldLikes - 1);
+    
       api.postUnLikesById(id)
       .then((data) => {
-        setLikes(data.likes)
+        setLikes(data.likes.length)
       })
       
     } else {
-      setLikes(oldLikes => oldLikes + 1);
       api.postLikeById(id)
       .then((data) => {
-        setLikes(data.likes)
+        setLikes(data.likes.length)
       })
       
       .catch((err) => {
@@ -42,8 +47,6 @@ export const LikeButton = () => {
 
     setClicked(!clicked);
   }
-
-
 
   return (
     <button

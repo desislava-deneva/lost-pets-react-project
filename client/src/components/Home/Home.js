@@ -13,7 +13,6 @@ export const Home = (props) => {
         result.reverse()
         result.length = 4;
         setPets(result)
-        console.log(result);
       });
 
     },[])

@@ -1,6 +1,8 @@
 import './Login.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
+import { useContext } from 'react';
 import * as api from '../../api/data'
 
 
@@ -16,7 +18,6 @@ export const Login = ({
         const password = formData.get('password');
 
         await api.login(username, password);
-        
         navigate('/')
     }
 
