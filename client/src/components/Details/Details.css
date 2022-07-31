@@ -1,3 +1,8 @@
+#details-page{
+    background-color: rgb(240, 227, 227);
+
+}
+
 .details-pet {
     width: 800px;
     height: auto;
@@ -6,6 +11,8 @@
     padding: 20px;
     margin-left: 10px;
     margin-top: 10px;
+    background-color: rgb(245, 238, 238);
+
 
 }
 
