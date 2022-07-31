@@ -7,48 +7,41 @@ import { Catalog } from './components/Catalog/Catalog';
 import { AddPet } from './components/AddPet/AddPet';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Details } from './components/Details/Details'
-import { useState, useEffect } from 'react';
-import * as authServices from './api/authServices'
+import { useEffect, useState } from 'react';
 import { EditPage } from './components/EditPage/EditPage';
 import { Logout } from './components/Logout/Logout';
-import { useSesionStorage } from './hooks/useSesionStorage';
-import { AuthContextProvider } from './contexts/AuthContext';
+import { AuthContext } from './contexts/AuthContext'
 
 function App() {
-  const [userInfo, setUserInfo] = useState({ isAuthenticated: false, username: '' });
-  const [user, setUser] = useSesionStorage({})
-  useEffect(() => {
-    let user = authServices.getUser();
-    setUserInfo({
-      isAuthenticated: Boolean(user),
-      user,
-    });
-  }, []);
+  const [user, setUserInfo] = useState({username: '', accessToken: '', _id: ''});
 
-  const onLogin = (username) => {
-    setUserInfo({
-      isAuthenticated: true,
-      user: username,
-    });
+  const onLogin = (data) => {
+    setUserInfo(data)
   }
+
+  const onLogout = () => {
+    setUserInfo({username: '', accessToken: '', _id: ''})
+  }
+
+
   return (
-    <AuthContextProvider>
-    <BrowserRouter>
-      <div className="App">
-        <NavBar {...userInfo} />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login onLogin={onLogin} />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/create" element={<AddPet add={{ add: "Add", textBtn: "Submit" }} />} />
-          <Route path="/catalog" element={<Catalog />} />
-          <Route path='/details/:id' element={<Details />} />
-          <Route path='/edit/:id' element={<EditPage edit={{ edit: "Edit", textBtn: "Edit" }} />} />
-          <Route path='/logout' element={<Logout />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
-    </AuthContextProvider>
+    <AuthContext.Provider value={{}}>
+      <BrowserRouter>
+        <div className="App">
+          <NavBar user={user} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login onLogin={onLogin} />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/create" element={<AddPet add={{ add: "Add", textBtn: "Submit" }} />} />
+            <Route path="/catalog" element={<Catalog />} />
+            <Route path='/details/:id' element={<Details />} />
+            <Route path='/edit/:id' element={<EditPage edit={{ edit: "Edit", textBtn: "Edit" }} />} />
+            <Route path='/logout' element={<Logout onLogout={onLogout} />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </AuthContext.Provider>
 
   );
 }

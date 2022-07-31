@@ -1,23 +1,28 @@
 import './Login.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext, useAuthContext } from '../../contexts/AuthContext';
 import { useContext } from 'react';
 import * as api from '../../api/data'
 
 
 export const Login = ({
+    onLogin
 }) => {
     const navigate = useNavigate();
 
-    const onLoginhandler = async (e) => {
+
+    const onLoginhandler = (e) => {
         e.preventDefault()
 
         let formData = new FormData(e.currentTarget);
         const username = formData.get('username');
         const password = formData.get('password');
+        api.login(username, password)
+            .then(res => {
+                onLogin(res)
+            })
 
-        await api.login(username, password);
         navigate('/')
     }
 

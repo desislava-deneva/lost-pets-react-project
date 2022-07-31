@@ -1,5 +1,5 @@
 export const setUser = (username)=>{
-    sessionStorage.setItem('username', username)
+    sessionStorage.setItem('username', username, )
 }
 
 export const getUser = ()=>{
