@@ -42,10 +42,11 @@ export const Details = (props) => {
                 <h5>Owner contact: {pet.ow}</h5>
 
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry </p>
+                {pet.owner === userId ?  '' :<LikeButton  /> }
             </div>
             {pet.owner === userId ? <EditDeleteButtons pet={pet} /> : ""}
             
-            <LikeButton />
+            
             <GoogleMap/>
         </article>
 
