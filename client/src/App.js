@@ -13,25 +13,32 @@ import { Logout } from './components/Logout/Logout';
 import { AuthContext } from './contexts/AuthContext'
 
 function App() {
-  const [user, setUserInfo] = useState({username: '', accessToken: '', _id: ''});
+  const [user, setUserInfo] = useState({username: '', authToken: '', _id: ''});
 
   const onLogin = (data) => {
     setUserInfo(data)
   }
 
   const onLogout = () => {
-    setUserInfo({username: '', accessToken: '', _id: ''})
+    const token = sessionStorage.getItem('authToken');
+    const username = sessionStorage.getItem('username');
+    const userId = sessionStorage.getItem('userId');
+
+    console.log(token , username, userId)
+
+    setUserInfo({username: '', authToken: '', _id: ''})
   }
 
 
   return (
-    <AuthContext.Provider value={{}}>
+    <AuthContext.Provider value={{user, onLogin}}>
       <BrowserRouter>
+      <main>
         <div className="App">
-          <NavBar user={user} />
+          <NavBar/>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login onLogin={onLogin} />} />
+            <Route path="/login" element={<Login  />} />
             <Route path="/register" element={<Register />} />
             <Route path="/create" element={<AddPet add={{ add: "Add", textBtn: "Submit" }} />} />
             <Route path="/catalog" element={<Catalog />} />
@@ -40,6 +47,8 @@ function App() {
             <Route path='/logout' element={<Logout onLogout={onLogout} />} />
           </Routes>
         </div>
+      </main>
+
       </BrowserRouter>
     </AuthContext.Provider>
 
