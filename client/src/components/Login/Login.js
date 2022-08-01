@@ -1,16 +1,14 @@
 import './Login.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext, useAuthContext } from '../../contexts/AuthContext';
+import { AuthContext } from '../../contexts/AuthContext';
 import { useContext } from 'react';
 import * as api from '../../api/data'
 
 
-export const Login = ({
-    onLogin
-}) => {
+export const Login = () => {
+    const { onLogin } = useContext(AuthContext)
     const navigate = useNavigate();
-
 
     const onLoginhandler = (e) => {
         e.preventDefault()
@@ -20,10 +18,14 @@ export const Login = ({
         const password = formData.get('password');
         api.login(username, password)
             .then(res => {
-                onLogin(res)
-            })
+                onLogin(res);
+                navigate('/')
 
-        navigate('/')
+            })
+            .catch(err=>{
+                alert(err.message)
+                throw err
+            })
     }
 
     return (

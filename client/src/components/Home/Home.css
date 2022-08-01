@@ -2,7 +2,7 @@
     align-items: center;
     width: 100%;
     height: auto;
-    background-image: url("/public/images/lost.jpg");
+    background-image: url("/public/images/bgimage.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
@@ -11,6 +11,7 @@
 }
 
 .home-pets{
-    padding-top: 50px;
+    padding-top: 100px;
+    padding-bottom: 200px;
 }
   

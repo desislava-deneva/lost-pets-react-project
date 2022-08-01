@@ -1,11 +1,27 @@
+
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import * as api from '../../api/data'
+import { AuthContext } from '../../contexts/AuthContext';
+import { useContext } from 'react';
 
-
-export const Logout = ()=>{
+export const Logout = (
+    onLogout
+) => {
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    sessionStorage.clear();
-    localStorage.clear();
+    useEffect(() => {
+        api.logout(user.authToken)
+            .then(res => {
 
-    navigate('/');
+                onLogout()
+                console.log(res)
+                navigate('/');
+            })
+    }, [])
+
+
+
+
 }

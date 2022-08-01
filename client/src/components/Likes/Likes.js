@@ -6,7 +6,9 @@ import * as api from '../../api/data';
 
 import './Likes.css'
 
-export const LikeButton = () => {
+export const LikeButton = ({
+  isOwner
+}) => {
   const [liked, setLiked] = useState(null);
   const [clicked, setClicked] = useState(false);
   const [likes, setLikes] = useState(0);
@@ -50,6 +52,8 @@ export const LikeButton = () => {
 
     setClicked(!clicked);
   }
+
+  const ownerPaharagraph = <p>{likes} Likes</p>
   
   return (
     <button

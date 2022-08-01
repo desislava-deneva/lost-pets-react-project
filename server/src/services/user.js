@@ -68,9 +68,9 @@ function createSession(user) {
 }
 
 function validateToken(token) {
-    if (blacklist.has(token)) {
-        throw new Error('Token is blacklisted');
-    }
+    // if (blacklist.has(token)) {
+    //     throw new Error('Token is blacklisted');
+    // }
     return jwt.verify(token, JWT_SECRET);
 }
 

@@ -53,13 +53,10 @@ async function updateById(existing, item) {
 async function like(userId, id) {
     const item = await Item.findById(id);
 
-    console.log('Likess  ' + item.likes)
-
     if (userId && !item.likes.includes(userId)) {
         item.likes.push(userId)
-        console.log(item.likes)
     } else {
-        throw ("You cat't like this item again")
+        throw ("You can't like this item again")
     }
 
     await item.save();

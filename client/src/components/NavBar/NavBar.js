@@ -1,13 +1,10 @@
 import './NavBar.css';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
+import { useContext } from 'react';
 
-
-export const NavBar = ({
-    user
-}) => {
-
-    console.log(user)
-
+export const NavBar = () => {
+    const {user} = useContext(AuthContext)
     let userNav = (
         <ul className="nav navbar-nav user">
             <li className="active"><Link to="/">Home</Link></li>
