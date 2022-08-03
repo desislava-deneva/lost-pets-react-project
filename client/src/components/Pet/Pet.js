@@ -10,7 +10,7 @@ export const Pet = (props) => {
                 <h3>{props.pet.species}</h3>
                 <h4>Name: <span>{props.pet.name}</span></h4>
                 <h4>Lost in : <span>{props.pet.city}</span></h4>
-                <p>{!props.pet.description ? 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry ': props.pet.description }</p>
+                <p className="pet-description">{!props.pet.description ? 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry ': props.pet.description }</p>
             </div>
     )
 }

@@ -4,7 +4,7 @@ import './Likes.css'
 import likeHand from './likeHand.jpeg';
 import unlikeHand from './unlikeHand.jpeg';
 
-export const LikesDesy = (props) => {
+export const Likes = (props) => {
   const [countLikes, setLikes] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
   const userId = sessionStorage.userId;

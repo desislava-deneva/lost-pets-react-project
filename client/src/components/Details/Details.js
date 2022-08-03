@@ -1,8 +1,7 @@
 import './Details.css'
 import { EditDeleteButtons } from '../EditDeleteButtons/EditDeleteButtons'
 import { useState, useEffect } from 'react';
-import { LikeButton } from '../Likes/Likes';
-import { LikesDesy } from '../Likes/Likes';
+import { Likes } from '../Likes/Likes';
 import { useParams } from 'react-router-dom';
 import { GoogleMap } from '../GoogleMap/GoogleMap';
 import * as api from '../../api/data';
@@ -16,15 +15,19 @@ export const Details = (props) => {
         api.getPetById(id)
             .then(result => {
                 setPet(result)
-                console.log(pet);
             })
     }, []);
+
+
 
     const [isFounded, setIsFounded] = useState(false);
 
     const isFoundedHandler = (e) => {
         setIsFounded(isFounded => isFounded = true);
     }
+
+    
+
 
     return (
         <article id='details-page'>
@@ -42,7 +45,7 @@ export const Details = (props) => {
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry </p>
 
                 </div>
-                {pet.owner === userId ? '' : <LikesDesy petsId={id} />}
+                {pet.owner === userId ? '' : <Likes petsId={id} />}
             </div>
 
             <div className="comments">

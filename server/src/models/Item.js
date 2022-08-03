@@ -17,7 +17,7 @@ const itemSchema = new Schema({
             message: 'Image must be a valid URL'
         }
     },
-    description: { type: String, maxlength: [80, 'Description must be max 80 characters long'] },
+    description: { type: String, default: '', maxlength: [500, 'Description must be max 500 characters long'] },
     likes: { type: [ObjectId], ref: 'User', default: [] },
     owner: { type: ObjectId, ref: 'User', required: true }, 
 });

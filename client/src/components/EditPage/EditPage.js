@@ -15,8 +15,8 @@ export const EditPage = (props) =>{
         api.getPetById(id)
         .then(result=>{
             setPet(result)
+            console.log(result)
         })
-        console.log(pet)
     }, [id])
    
 
@@ -75,7 +75,7 @@ export const EditPage = (props) =>{
             <label htmlFor="species">Species:</label>
             <input type="text" id="type" className="add-input" name="type" placeholder="Dog" value={pet.type} />
             <label htmlFor="description">Description:</label>
-            <textarea name="description" id="description" cols="30" rows="5">{pet.description}</textarea>
+            <textarea name="description" id="description" cols="30" rows="5" value= {pet.description}></textarea>
 
             <input type="submit" className="add-submit" value="Edit"/>
         </form>

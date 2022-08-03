@@ -10,10 +10,11 @@
 }
 
 .pet:hover {
-    background-color: rgb(209, 202, 202);;
+    background-color: rgb(209, 202, 202);
     cursor: pointer;
 }
-p{
+
+p {
     min-height: 100px;
     display: flex;
 
@@ -22,4 +23,16 @@ p{
 .imageList {
     width: 230px;
     height: 160px;
+}
+
+.pet-description {
+    white-space: normal; 
+    width: 250px; 
+    height: 50px;
+    overflow: hidden;
+    border: solid #d6cfcf;
+}
+
+.pet-description:hover{
+    height: auto;
 }
