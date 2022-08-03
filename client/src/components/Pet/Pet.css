@@ -1,12 +1,14 @@
 .pet {
     width: 250px;
     height: auto;
-    border: 1px solid black;
     display: inline-block;
     padding: 20px;
     margin-left: 10px;
     margin-top: 10px;
     background-color: rgb(245, 238, 238);
+    border-radius: 2%;
+    text-decoration: none;
+
 }
 
 .pet:hover {
@@ -26,15 +28,20 @@ p {
 }
 
 .pet-description {
-    white-space: normal; 
-    width: 250px; 
+    white-space: normal;
+    width: 250px;
     height: 50px;
     overflow: hidden;
+}
+
+.hover:hover {
+    height: auto;
+    white-space: normal;
     border: solid #d6cfcf;
 }
 
-.hover:hover{
-    height: auto;
-    white-space: normal; 
-    border: solid #d6cfcf;
+h3,
+a {
+    text-decoration: none;
+    color: black;
 }

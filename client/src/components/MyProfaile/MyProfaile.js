@@ -31,9 +31,10 @@ export const MyProfaile = () => {
                     <li>Name: {user.name}</li>
                     <li>Username: {user.username}</li>
                     <div className='center'>
-                        <button>Edit profaile</button>
                     </div>
                 </ul>
+                <button className='center'>Edit profaile</button>
+
             </div>
             <div className="my-pets">
                 {myPets && myPets.map(pet => <Pet key={pet._id} pet={pet} />)}

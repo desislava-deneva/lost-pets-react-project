@@ -2,12 +2,11 @@
     display: flex; 
     justify-content: center;
     align-items: center;
-    height: 90vh;
-    background-image: url("/public/images/lost.jpg");
+    height: 100vh;
+    background-image: url("/public/images/dogs-transparent-background.jpeg");
     background-repeat: no-repeat;
-    background-position: center;
-    background-color: #ffffff;
-    background-size: 100% auto;
+    background-position: top;
+    top:0px
     
 }
 
@@ -15,28 +14,23 @@
 .login {
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    padding: 20px 30px;
-  border: 1px solid black;
 }
 .login-title {
-    font-size: 32px;
+    font-size: 30px;
 }
 
 .login-form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 18px;
     
 }
 
 .login-input {
     color: #252525;
-    min-width: 200px;
-    min-height: 30px;
     font-size: 24px;
-    border: 1px solid rgb(15, 15, 15);
+    border: 0px;
     padding-left: 10px;
 }
 
@@ -45,28 +39,15 @@
     min-width: 150px;
     min-height: 40px;
     font-size: 20px;
-    border: 1px solid rgb(15, 15, 15);
+    border: 0px;
     margin-top: 30px;
 }
 
 .login-submit:hover {
-    background-color: #ddd;
+    background-color: rgb(199, 199, 199);
     cursor: pointer;
 }
 
 .login-input:hover {
-    background-color: rgb(216, 214, 214);
-    cursor: pointer;
+    background-color:  rgb(199, 199, 199);
 }
-
-/* .login-to-register-link {
-    font-weight: bold;
-    font-size: 24px;
-    text-decoration: none;
-    text-transform: uppercase;
-    color: var(--secondary-color)
-} */
-
-/* .login-to-register-link:hover {
-    text-decoration: underline;
-} */

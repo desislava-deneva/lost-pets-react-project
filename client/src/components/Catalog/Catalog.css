@@ -1,47 +1,32 @@
 .calalog {
-   align-items: center;
-    width: 100%;
-    height: 100%;
-    background-image: url("/public/images/catalogImage.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100% 100%;
-    margin: 0;
+  background-image: url("/public/images/dogs-transparent-background.jpeg");
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: auto;
 }
 
-.list{
-  padding-top: 100px;
+.list {
+  padding-top: 200px;
   padding-bottom: 200px;
 }
 
 
-
-.sort-button {
+.dropbtn {
   display: flex;
   width: 70px;
   height: 30px;
   background-color: rgb(240, 227, 227);
   margin: 70px;
   content: center;
+  border-radius: 5px;
+  border: 0px 
 }
 
-/* Dropdown Button */
-.dropbtn dropdown{
-  background-color: rgb(223, 195, 195);
-  ;
-  padding: 10px;
-  font-size: 16px;
-  border: none;
-
-}
-
-/* The container <div> - needed to position the dropdown content */
 .dropdown {
   float: left;
   padding: 15px;
 }
 
-/* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
   position: absolute;
@@ -49,7 +34,6 @@
   min-width: 70px;
 }
 
-/* Links inside the dropdown */
 .dropdown-content a {
   color: black;
   padding: 12px 16px;

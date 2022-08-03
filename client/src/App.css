@@ -1,8 +1,13 @@
 .App {
   text-align: center;
+  min-height: 970px;
+  background-color: rgb(215, 224, 224);
 }
-main{
-  height: 100%;
+
+body {
+  margin: 0;
+  padding: 0;
+
 }
 
 .App-logo {
@@ -35,6 +40,7 @@ main{
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

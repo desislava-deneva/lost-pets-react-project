@@ -44,7 +44,6 @@ function App() {
   return (
     <AuthContext.Provider value={{ user, onLogin, onLogout, onRegister }}>
       <BrowserRouter>
-        <main>
           <div className="App">
             <NavBar />
             <Routes>
@@ -57,15 +56,10 @@ function App() {
               <Route path='/edit/:id' element={<EditPage edit={{ edit: "Edit", textBtn: "Edit" }} />} />
               <Route path='/logout' element={<Logout />} />
               <Route path='/my-profail' element={<MyProfaile />} />
-
             </Routes>
           </div>
-        </main>
-
       </BrowserRouter>
     </AuthContext.Provider>
-
   );
 }
-
 export default App;

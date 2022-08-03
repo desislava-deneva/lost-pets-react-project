@@ -12,7 +12,8 @@
   }
   
   #edit-delete-buttons>a:hover {
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
+    background-color: #b9afaf;
     cursor: pointer;
 }
 

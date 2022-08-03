@@ -39,8 +39,7 @@ export const Details = (props) => {
                     <h5>Neighborhood: {pet.neighborhood}</h5>
 
                     <div className="description-details center">
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry </p>
-
+                        {pet.description}
                     </div>
                     {pet.owner === userId ? '' : <Likes petsId={id} />}
                     {pet.owner === userId ? <EditDeleteButtons pet={pet} /> : ""}
