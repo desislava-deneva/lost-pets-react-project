@@ -50,3 +50,7 @@ export async function likes(id, data) {
 export async function deleteRecord(id) {
     return await api.del(host + '/data/catalog/' + id);
 }
+
+export async function getUserByUsername(id) {
+    return await api.get(host + '/users/my-profail'+id);
+}

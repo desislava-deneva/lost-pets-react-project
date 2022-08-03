@@ -26,41 +26,37 @@ export const Details = (props) => {
         setIsFounded(isFounded => isFounded = true);
     }
 
-    
-
-
     return (
         <article id='details-page'>
             <h1>Details</h1>
             <div className='flex-container'>
-            <div className="details-pet">
-                <img src={pet.img} alt={pet.name} />
-                <h3>{pet.type} name:  <span>{pet.name}</span></h3>
-                <h5>Birth Year: <span>{pet.birthYear} year</span></h5>
-                <h5>Data Of Lost: {pet.dataLost} </h5>
-                <h5>City: {pet.city}</h5>
-                <h5>Neighborhood: {pet.neighborhood}</h5>
+                <div className="details-pet">
+                    <img src={pet.img} alt={pet.name} />
+                    <h3>{pet.type} name:  <span>{pet.name}</span></h3>
+                    <h5>Birth Year: <span>{pet.birthYear} year</span></h5>
+                    <h5>Data Of Lost: {pet.dataLost} </h5>
+                    <h5>City: {pet.city}</h5>
+                    <h5>Neighborhood: {pet.neighborhood}</h5>
 
-                <div className="description-details center">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry </p>
+                    <div className="description-details center">
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry </p>
+
+                    </div>
+                    {pet.owner === userId ? '' : <Likes petsId={id} />}
+                    {pet.owner === userId ? <EditDeleteButtons pet={pet} /> : ""}
 
                 </div>
-                {pet.owner === userId ? '' : <Likes petsId={id} />}
-            </div>
 
-            <div className="comments">
-                <ul>
-                    <li>Comment 1</li>
-                    <li>Comment 2</li>
-                    <li>Comment 3</li>
-                    <li>Comment 4</li>
-                </ul>
+                <div className="comments">
+                    <h1>Comments:</h1>
+                    <ul>
+                        <li>Comment 1 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply </li>
+                        <li>Comment 2</li>
+                        <li>Comment 3</li>
+                        <li>Comment 4</li>
+                    </ul>
+                </div>
             </div>
-            </div>
-           
-            {pet.owner === userId ? <EditDeleteButtons pet={pet} /> : ""}
-
-
             <GoogleMap />
         </article>
 

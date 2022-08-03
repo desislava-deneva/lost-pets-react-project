@@ -27,6 +27,18 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.get('/my-profail/:id', async (req, res) => {
+    console.log(req);
+    const { user } = req.body;
+    try {
+        const result = await api.getUserByUsername(user.username);
+        res.json(result);
+    } catch (err) {
+        console.error(err);
+        res.status(400).json({ message: err.message });
+    }
+});
+
 router.get('/logout', (req, res) => {
     api.logout(req.user.token);
     res.status(204).end();

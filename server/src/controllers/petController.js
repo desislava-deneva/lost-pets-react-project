@@ -49,7 +49,7 @@ router.put('/:id', preload(api), isOwner(), async (req, res) => {
         res.json(result);
     } catch (err) {
         console.error(err);
-        res.status(400).json({ message: 'Request error' });
+        res.status(400).json({ message: err._message });
     }
 });
 

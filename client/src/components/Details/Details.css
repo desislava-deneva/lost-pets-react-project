@@ -9,12 +9,19 @@
 
 
 .comments>ul>li {
-    display: inline-block; 
-    width: 50%;
-    height: 30%;
-    padding: 5px;
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 30px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    width: 500px;
+    height: auto;
+    padding: 1px;
     border: 1px solid blue;  
     background-color: yellow; 
+    
 }
 
 .details-pet {

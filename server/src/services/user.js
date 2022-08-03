@@ -61,6 +61,7 @@ function createSession(user) {
     const accessToken = jwt.sign(payload, JWT_SECRET);
 
     return {
+        name: user.name,
         username: user.username,
         accessToken,
         _id: user._id

@@ -1,13 +1,17 @@
 import './Register.css';
 // import { useContext, createContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { register } from '../../api/data';
 import * as api from '../../api/data'
+
+import { AuthContext } from '../../contexts/AuthContext';
+import { useContext } from 'react';
+
 
 // form onSubmit={onRegisterHandler}
 export const Register = (props) => {
 
     const navigate = useNavigate();
+    const {onRegister} = useContext(AuthContext)
 
     const onRegisterHandler = async(e) => {
         e.preventDefault();
@@ -39,7 +43,7 @@ export const Register = (props) => {
 
         await api.register(name, username, password)
         
-
+        onRegister({name, username})
         navigate('/')
     }
 

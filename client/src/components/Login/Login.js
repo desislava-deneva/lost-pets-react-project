@@ -22,7 +22,6 @@ export const Login = () => {
                 navigate('/')
             })
             .catch(err=>{
-                alert(err.message)
                 throw err
             })
     }
