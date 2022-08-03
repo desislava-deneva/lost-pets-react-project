@@ -1,8 +1,3 @@
-#details-page {
-    background-color: rgb(240, 227, 227);
-    padding-left: 50px;
-}
-
 .flex-container{
     display: flex;
 }
@@ -10,12 +5,7 @@
 
 .comments>ul>li {
     display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
     margin-block-end: 1em;
-    margin-inline-start: 30px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
     width: 500px;
     height: auto;
     padding: 1px;
@@ -24,31 +14,13 @@
     
 }
 
-.details-pet {
-    padding-top: 350px;
-    padding-left: 20px;
-    padding-right: 35px;
-    padding-bottom: 35px;
-    background-color: rgb(245, 238, 238);
-    align-items: center;
-    width: 50%;
-    height: auto;
-    background-image: url("/public/images/wanted.jpg");
-    background-size: 100% 100%;
-    margin: 0;
-
-}
-
 .description-details {
     display: inline-block;
     white-space: pre-line;
-    width: 300px;
-    height: auto;
 }
 
 .pet:hover {
     background-color: rgb(209, 202, 202);
-    cursor: pointer;
 }
 
 img {
@@ -57,9 +29,8 @@ img {
 }
 
 #details-page>h1 {
-    text-align: center;
+    margin-top: 3.5%;
     font-size: 50px;
-    color: rgb(0, 0, 0);
     font-family: 'EB Garamond', serif;
 }
 
