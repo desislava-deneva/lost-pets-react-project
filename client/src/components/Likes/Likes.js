@@ -39,15 +39,12 @@ export const Likes = (props) => {
     }
     setIsLiked(!isLiked)
   }
-
-  const likeText = `Like${isLiked ? "d" : ""}`;
   
   return (
     <button onClick={() => {onClickLikeHandler()}}>
         <div className="like-button">
             <img src={isLiked ? likeHand : unlikeHand} alt="png" className="like-img" />
             <span>{countLikes} </span>
-            <span>{likeText}</span>
         </div>
     </button>
   );
