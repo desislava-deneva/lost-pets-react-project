@@ -20,18 +20,18 @@ function App() {
   }
 
   const onLogout = () => {
-    const token = sessionStorage.getItem('authToken');
-    const username = sessionStorage.getItem('username');
-    const userId = sessionStorage.getItem('userId');
-
-    console.log(token , username, userId)
-
-    setUserInfo({username: '', authToken: '', _id: ''})
+    let token = sessionStorage.getItem('authToken');
+    let username = sessionStorage.getItem('username');
+    let userId = sessionStorage.getItem('userId');
+    token ='';
+    username = '';
+    userId = ''
+    setUserInfo({username, authToken:token, _id: userId});
   }
 
 
   return (
-    <AuthContext.Provider value={{user, onLogin}}>
+    <AuthContext.Provider value={{user, onLogin, onLogout}}>
       <BrowserRouter>
       <main>
         <div className="App">
@@ -44,7 +44,7 @@ function App() {
             <Route path="/catalog" element={<Catalog />} />
             <Route path='/details/:id' element={<Details />} />
             <Route path='/edit/:id' element={<EditPage edit={{ edit: "Edit", textBtn: "Edit" }} />} />
-            <Route path='/logout' element={<Logout onLogout={onLogout} />} />
+            <Route path='/logout' element={<Logout/>} />
           </Routes>
         </div>
       </main>
