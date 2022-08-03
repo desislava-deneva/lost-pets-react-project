@@ -30,10 +30,8 @@ export const MyProfaile = () => {
                 <ul>
                     <li>Name: {user.name}</li>
                     <li>Username: {user.username}</li>
-                    <div className='center'>
-                    </div>
                 </ul>
-                <button className='center'>Edit profaile</button>
+                <button>Edit profaile</button>
 
             </div>
             <div className="my-pets">

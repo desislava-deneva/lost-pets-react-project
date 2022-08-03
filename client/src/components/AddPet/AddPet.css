@@ -1,23 +1,21 @@
 .add {
-    display: flex; 
+    display: flex;
     justify-content: center;
     align-items: center;
-    height: auto;
-    background-image: url("/public/images/lost.jpg");
+    background-image: url("/public/images/dogs-transparent-background.jpeg");
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center top;
     background-size: 100% auto;
     flex-direction: column;
 }
 
-label{
-     font-size: 130%;
+label {
+    font-size: 130%;
 }
-.pet-form{
-    border: 1px solid rgb(15, 15, 15);
+
+.pet-form {
+    border: 0px;
     padding: 25px;
-    width: 300px;
-    height: 550px;
 }
 
 .add-title {
@@ -26,7 +24,7 @@ label{
 }
 
 .add-form {
-    padding: 1px;
+    padding: 12px;
     max-width: 700px;
     margin: 0 auto;
     flex-direction: column;
@@ -38,7 +36,7 @@ label{
     color: #252525;
     min-width: 0px;
     font-size: 20px;
-    border: 1px solid rgb(15, 15, 15);
+    border: 0px;
     padding-left: 10px;
     font-style: italic;
 }
@@ -48,17 +46,20 @@ label{
     min-width: 150px;
     min-height: 40px;
     font-size: 20px;
-    border: 1px solid rgb(15, 15, 15);
+    border: 0px;
     margin-top: 30px;
 }
 
 .add-submit:hover {
-    background-color:rgb(216, 214, 214);;
+    background-color: rgb(216, 214, 214);
     cursor: pointer;
 }
 
 .add-input:hover {
-    background-color: rgb(216, 214, 214);;
+    background-color: rgb(216, 214, 214);
     cursor: pointer;
 }
 
+label {
+    color: rgb(63, 158, 165);
+}
