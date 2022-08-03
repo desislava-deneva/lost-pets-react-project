@@ -20,7 +20,6 @@ export const Login = () => {
             .then(res => {
                 onLogin(res);
                 navigate('/')
-
             })
             .catch(err=>{
                 alert(err.message)

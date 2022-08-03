@@ -35,7 +35,6 @@ export const AddPet = (params) => {
             })
 
         navigate('/')
-
     }
 
     const onChangeHandler = (e) => {
@@ -47,14 +46,12 @@ export const AddPet = (params) => {
             setPetLostData(e.target.value);
         } else if (e.target.name === "city") {
             setPetCity(e.target.value)
-
         } else if (e.target.name === "neighborhood") {
             setPetNeighborhood(e.target.value)
         } else if (e.target.name === "birthYear") {
             setBirthYear(e.target.value)
         } else if (e.target.name === "type") {
             setPetType(e.target.value)
-
         } else if (e.target.name === "description") {
             setPetDescription(e.target.value)
         }

@@ -1,27 +1,3 @@
-.like-button-wrapper::before {
-
-  z-index: 1;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  will-change: background-color;
-  transition: background-color 0.3s, transform 0.3s;
-  background-color: dark;
-  box-shadow: 0 0 10px darkLower;
-  border-radius: 8px;
-  display: block;
-}
-.like-button-wrapper.liked::before {
-  background-color: primary;
-}
-.like-button-wrapper .suffix {
-  opacity: 0;
-  transition: opacity 300ms, transform 300ms;
-  transform: translateX(10px);
-}
-.like-button-wrapper .suffix.liked {
-  opacity: 1;
-  transform: translateX(0);
+.like-img {
+  width: 50px;
 }
