@@ -7,7 +7,7 @@ import profailePicture from './unisex-image.jpeg';
 
 export const MyProfaile = () => {
 
-    const { user, editUserSessionStorage } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [myPets, setMyPets] = useState([]);
     const [isClicked, setIsClicked] = useState();
 
@@ -25,7 +25,6 @@ export const MyProfaile = () => {
 
     }, []);
 
-
     let nameInput = <input type="name" name='name'  />
     let usernameInput = <input type="username" name='username' />
 
@@ -33,9 +32,7 @@ export const MyProfaile = () => {
         if(!isClicked){
             setIsClicked(true);
         }else{
-            const {name, username} = document.getElementsByTagName('input')
-            console.log(name.value, username.value);
-            editUserSessionStorage(name.value, username.value)
+            // const {name, username} = document.getElementsByTagName('input')
             setIsClicked(false);
         }
     }

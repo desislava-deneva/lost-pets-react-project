@@ -6,7 +6,8 @@
     background-image: url("/public/images/dogs-transparent-background.jpeg");
     background-repeat: no-repeat;
     background-position: top;
-    top: 0px
+    padding-top: 60px;
+
 }
 
 .register {

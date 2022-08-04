@@ -9,17 +9,12 @@
     background-size: 100% auto;
     flex-direction: column;
     height: auto;
-
+    padding-top: 150px;
 }
 
 label {
     font-size: 130%;
-}
-
-.pet-form {
-    border: 0px;
-    padding: 25px;
-    border-top: 50px;
+    padding: 1px;
 }
 
 .add-title {
@@ -55,7 +50,7 @@ label {
 }
 
 .add-submit:hover {
-    background-color: rgb(216, 214, 214);
+    background-color: rgb(192, 185, 185);
     cursor: pointer;
 }
 
@@ -64,6 +59,21 @@ label {
     cursor: pointer;
 }
 
-label {
-    color: rgb(255, 255, 255);
+textarea:hover{
+    background-color: rgb(216, 214, 214);
+    cursor: pointer;
+}
+
+.pet-form {
+    background-color: rgb(215, 222, 223);
+    border-radius: 5px;
+    padding: 30px;
+}
+
+h2 {
+    color: black;
+}
+
+textarea{
+    border-radius: 5px;
 }

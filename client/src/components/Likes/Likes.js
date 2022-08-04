@@ -9,41 +9,41 @@ export const Likes = (props) => {
   const [isLiked, setIsLiked] = useState(false);
   const userId = sessionStorage.userId;
 
-  useEffect(()=>{
+  useEffect(() => {
     api.getLikesById(props.petsId)
-    .then(data=>{
-      setLikes(data.likes.length);
-      if(data.likes.includes(userId)){
-        setIsLiked(true)
-      }
-    })
+      .then(data => {
+        setLikes(data.likes.length);
+        if (data.likes.includes(userId)) {
+          setIsLiked(true)
+        }
+      })
   }, [])
 
   const onClickLikeHandler = () => {
     if (isLiked) {
       api.postUnLikesById(props.petsId)
-      .then((data) => {
-        setLikes(data.likes.length)
-      })
-      .catch((err) => {
-        console.error(err.message);
-      });
-    } else{
+        .then((data) => {
+          setLikes(data.likes.length)
+        })
+        .catch((err) => {
+          console.error(err.message);
+        });
+    } else {
       api.postLikeById(props.petsId)
-      .then((data) => {
-        setLikes(data.likes.length)
-      })
-      .catch((err) => {
-        console.error(err.message);
-      });
+        .then((data) => {
+          setLikes(data.likes.length)
+        })
+        .catch((err) => {
+          console.error(err.message);
+        });
     }
     setIsLiked(!isLiked)
   }
-  
+
   return (
-        <div className="like-button" onClick={() => {onClickLikeHandler()}}>
-            <img src={isLiked ? likeHand : unlikeHand} alt="png" className="like-img" />
-            <span>{countLikes} </span>
-        </div>
+    <div className="like-button" onClick={() => { onClickLikeHandler() }}>
+      <img src={isLiked ? likeHand : unlikeHand} alt="png" className="like-img" />
+      <span>{countLikes} </span>
+    </div>
   );
 };

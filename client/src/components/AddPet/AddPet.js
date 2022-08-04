@@ -3,7 +3,7 @@ import { createRecord } from '../../api/data';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export const AddPet = (params) => {
+export const AddPet = () => {
 
     const [petName, setPetName] = useState('');
     const [petType, setPetType] = useState('');
@@ -60,7 +60,7 @@ export const AddPet = (params) => {
     return (
         <section className="add">
             <div className='pet-form'>
-                <h2 className="add-title">{params.add.add} form</h2>
+                <h2 className="add-title">Add form</h2>
                 <form className="add-form" onSubmit={onSubmitHandler} onChange={onChangeHandler}>
                     <label htmlFor="pet-name">Pet name:</label>
                     <input type="text" name="name" className="add-input" id="name" placeholder="Bruno" value={petName} />
@@ -78,7 +78,7 @@ export const AddPet = (params) => {
                     <input type="text" id="type" className="add-input" name="type" placeholder="Dog" value={petType} />
                     <label htmlFor="description">Description:</label>
                     <textarea name="description" id="description" cols="30" rows="5">{petDescription}</textarea>
-                    <input type="submit" className="add-submit" value={params.add.textBtn} />
+                    <input type="submit" className="add-submit" value="Add" />
                 </form>
             </div>
         </section>
