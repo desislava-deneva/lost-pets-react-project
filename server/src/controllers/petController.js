@@ -7,6 +7,7 @@ const errorMapper = require('../util/errorMapper');
 
 
 router.get('/', async (req, res) => {
+    console.log('in get /')
     try {
         res.json(await api.getAll(req.query.where));
     } catch (err) {
@@ -15,6 +16,8 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', isAuth(), async (req, res) => {
+    console.log('in post /')
+
     const item = {
         type: req.body.type,
         name: req.body.name,
@@ -41,9 +44,13 @@ router.post('/', isAuth(), async (req, res) => {
 
 router.get('/:id', preload(api), (req, res) => {
     res.json(res.locals.item);
+    console.log('in get /:id')
+
 });
 
 router.put('/:id', preload(api), isOwner(), async (req, res) => {
+    console.log('in put /:id')
+
     try {
         const result = await api.updateById(res.locals.item, req.body);
         res.json(result);
@@ -56,6 +63,9 @@ router.put('/:id', preload(api), isOwner(), async (req, res) => {
 router.delete('/:id', preload(api), isAuth(), isOwner(), async (req, res) => {
     const id = req.params.id;
 
+    console.log('in delete /:id')
+
+
     try {
         const result = await api.deleteById(id);
         res.json(result);
@@ -65,11 +75,15 @@ router.delete('/:id', preload(api), isAuth(), isOwner(), async (req, res) => {
     }
 });
 
-router.get('/:id/like', preload(api), isAuth(), async (req, res) => {
+router.get('/:id/like', preload(api), async (req, res) => {
     res.json(res.locals.item);
+    console.log('in get /:id/like')
+
 })
 
 router.post('/:id/like', preload(api), isAuth(), async (req, res) => {
+    console.log('in post /:id/like')
+
     const id = req.params.id;
     const userId = req.user._id;
     try {
@@ -82,6 +96,8 @@ router.post('/:id/like', preload(api), isAuth(), async (req, res) => {
 })
 
 router.post('/:id/unlike', preload(api), isAuth(), async (req, res) => {
+    console.log('in get /:id/unlike')
+
     const id = req.params.id;
     const userId = req.user._id;
     try {

@@ -9,6 +9,7 @@ import * as api from '../../api/data';
 export const Details = (props) => {
     const [pet, setPet] = useState({});
     const userId = sessionStorage.userId;
+    console.log(userId)
     const params = useParams();
     const id = params.id;
     useEffect(() => {
@@ -41,12 +42,9 @@ export const Details = (props) => {
                     <div className="description-details">
                         {pet.description}
                     </div>
-                    {pet.owner === userId ? '' : <Likes petsId={id} />}
+                    {userId === undefined || pet.owner === userId ? '' : <Likes petsId={id} />}
 
-                    {pet.owner === userId ? <EditDeleteButtons pet={pet} /> : ""}
-
-
-
+                    {userId !== undefined && pet.owner === userId ? <EditDeleteButtons pet={pet} /> : ""}
                 </div>
 
                 <div className="comments">
