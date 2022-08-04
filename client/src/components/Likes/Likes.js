@@ -41,11 +41,9 @@ export const Likes = (props) => {
   }
   
   return (
-    <button onClick={() => {onClickLikeHandler()}}>
-        <div className="like-button">
+        <div className="like-button" onClick={() => {onClickLikeHandler()}}>
             <img src={isLiked ? likeHand : unlikeHand} alt="png" className="like-img" />
             <span>{countLikes} </span>
         </div>
-    </button>
   );
 };

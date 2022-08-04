@@ -27,9 +27,9 @@ export const Details = (props) => {
     }
 
     return (
-        <article id='details-page'>
+        <article id='details-page' className='details-page'>
             <h1>Details</h1>
-            <div className='flex-container'>
+            <div className="flex-container">
                 <div className="details-pet">
                     <img src={pet.img} alt={pet.name} />
                     <h3>{pet.type} name:  <span>{pet.name}</span></h3>
@@ -38,16 +38,19 @@ export const Details = (props) => {
                     <h5>City: {pet.city}</h5>
                     <h5>Neighborhood: {pet.neighborhood}</h5>
 
-                    <div className="description-details center">
+                    <div className="description-details">
                         {pet.description}
                     </div>
                     {pet.owner === userId ? '' : <Likes petsId={id} />}
+
                     {pet.owner === userId ? <EditDeleteButtons pet={pet} /> : ""}
+
+
 
                 </div>
 
                 <div className="comments">
-                    <h1>Comments:</h1>
+                    <h2>Comments:</h2>
                     <ul>
                         <li>Comment 1 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply </li>
                         <li>Comment 2</li>

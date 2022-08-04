@@ -30,7 +30,7 @@
     display: block;
 }
 
-.my-profaile>button{
+.my-profaile>button {
     margin: 5px;
     padding-left: 0px;
     border: 1px solid;
@@ -39,7 +39,11 @@
 
 }
 
-.my-profaile>button:hover{
+.my-profaile>button:hover {
     background-color: rgb(224, 221, 221);
     border-radius: 5px;
+}
+
+.my-profaile-page .my-pets{
+    padding-bottom: 100px;
 }

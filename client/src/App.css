@@ -1,13 +1,13 @@
 .App {
   text-align: center;
-  min-height: 970px;
+  min-height: 1000px;
   background-color: rgb(215, 224, 224);
 }
 
 body {
   margin: 0;
   padding: 0;
-
+  border: 0;
 }
 
 .App-logo {
@@ -15,7 +15,18 @@ body {
   pointer-events: none;
 }
 
-img{
+h1 {
+  color: black;
+  margin-top: 5%;
+  font-size: 50px;
+  font-family: 'EB Garamond', serif;
+}
+
+h2 {
+  color: black;
+  font-family: 'EB Garamond', serif;
+}
+input {
   border-radius: 5px;
 }
 

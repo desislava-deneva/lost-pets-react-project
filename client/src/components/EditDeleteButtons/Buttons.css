@@ -5,6 +5,7 @@
     display: inline-block;
     margin: 4px 2px;
     border-radius: 5px;
+    display: inline-flex;
   }
   
   #edit-delete-buttons>a:hover {

@@ -1,3 +1,12 @@
 .like-img {
-  width: 50px;
+  display: inline-flex;
+  width: 35%;
+  margin: 0px;
+  border: 0px;
 }
+
+.like-button {
+  width: 90px;
+  height: auto;
+}
+

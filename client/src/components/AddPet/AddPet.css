@@ -2,11 +2,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-attachment: fixed;
     background-image: url("/public/images/dogs-transparent-background.jpeg");
     background-repeat: no-repeat;
     background-position: center top;
     background-size: 100% auto;
     flex-direction: column;
+    height: auto;
+
 }
 
 label {
@@ -16,6 +19,7 @@ label {
 .pet-form {
     border: 0px;
     padding: 25px;
+    border-top: 50px;
 }
 
 .add-title {
@@ -61,5 +65,5 @@ label {
 }
 
 label {
-    color: rgb(63, 158, 165);
+    color: rgb(255, 255, 255);
 }

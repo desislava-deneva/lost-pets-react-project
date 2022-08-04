@@ -35,6 +35,7 @@ export const MyProfaile = () => {
 
             </div>
             <div className="my-pets">
+                <h2>My lost pets</h2>
                 {myPets && myPets.map(pet => <Pet key={pet._id} pet={pet} />)}
             </div>
 

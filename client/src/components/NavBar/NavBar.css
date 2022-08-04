@@ -6,18 +6,18 @@
   top: 0;
   overflow: hidden;
   width: 100%;
-}
-
-
-.container-nav {
-  padding: 0.2rem 0.2rem;
+  height: auto;
 }
 
 .nav li {
-  margin: 1%;
-  padding: 2%;
   display: inline;
   font-weight: bold;
+}
+
+.logout-end{
+  position:fixed;
+   right:15px;
+   top:0px;
 }
 
 .nav a{
@@ -26,11 +26,11 @@
 }
 
 .home-jpg {
-  width: 110px;
-  height: 60px;
+  width: 90px;
+  height: 50px;
   position: absolute;
   left: 15px;
-  top: 10px;
+  top: 0px;
   font-size: 50px;
 }
 
@@ -44,4 +44,9 @@
   margin: auto;
   width: 50%;
   padding: 10px;
+}
+
+.navbar>img{
+  left:5px;
+  top:0px;
 }
