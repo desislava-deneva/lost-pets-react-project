@@ -69,8 +69,8 @@ async function unlike(userId, id) {
 
     if (userId && item.likes.includes(userId)) {
         const index = item.likes.indexOf(userId);
-        if (index > -1) { 
-            item.likes.splice(index, 1); 
+        if (index > -1) {
+            item.likes.splice(index, 1);
         }
     }
 
@@ -81,7 +81,6 @@ async function unlike(userId, id) {
 
 async function deleteById(id) {
     const item = Item.findByIdAndDelete(id);
-    console.log(item)
     return await Item.findByIdAndDelete(id);
 }
 

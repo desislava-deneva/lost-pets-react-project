@@ -75,9 +75,23 @@ function validateToken(token) {
     return jwt.verify(token, JWT_SECRET);
 }
 
+async function updateUserInfo(user) {
+    const existing = await User.findOne({ username: new RegExp(`^${user.username}$`, 'i') });
+
+    if (!user) {
+        throw new Error('Incorrect username');
+    }
+
+    existing.name = user.name,
+    existing.username = user.username
+
+    await existing.save();
+}
+
 module.exports = {
     register,
     login,
     logout,
-    validateToken
+    validateToken,
+    updateUserInfo
 };

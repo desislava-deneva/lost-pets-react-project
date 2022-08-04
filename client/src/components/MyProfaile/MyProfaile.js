@@ -7,8 +7,10 @@ import profailePicture from './unisex-image.jpeg';
 
 export const MyProfaile = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, editUserSessionStorage } = useContext(AuthContext);
     const [myPets, setMyPets] = useState([]);
+    const [isClicked, setIsClicked] = useState();
+
     useEffect(() => {
         try {
             api.getPets()
@@ -21,7 +23,22 @@ export const MyProfaile = () => {
             throw new error(error);
         }
 
-    }, [])
+    }, []);
+
+
+    let nameInput = <input type="name" name='name'  />
+    let usernameInput = <input type="username" name='username' />
+
+    const onEditUserProfaileHandler = (e) => {
+        if(!isClicked){
+            setIsClicked(true);
+        }else{
+            const {name, username} = document.getElementsByTagName('input')
+            console.log(name.value, username.value);
+            editUserSessionStorage(name.value, username.value)
+            setIsClicked(false);
+        }
+    }
 
     return (
         <div className="my-profaile-page">
@@ -29,10 +46,11 @@ export const MyProfaile = () => {
                 <img src={profailePicture} alt="img" className='profaile-picture' />
                 <ul>
                     <li>Name: {user.name}</li>
+                    {isClicked ? nameInput : ""}
                     <li>Username: {user.username}</li>
+                    {isClicked? usernameInput :""}
                 </ul>
-                <button>Edit profaile</button>
-
+                <button onClick={onEditUserProfaileHandler}>Edit profaile</button>
             </div>
             <div className="my-pets">
                 <h2>My lost pets</h2>
