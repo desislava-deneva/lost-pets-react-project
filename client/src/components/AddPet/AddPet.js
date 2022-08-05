@@ -56,6 +56,10 @@ export const AddPet = () => {
         } else if (e.target.name === "type") {
             setPetType(e.target.value)
         } else if (e.target.name === "description") {
+            if (e.target.value.length > 500) {
+                alert('Description must be <= 500 charecters');
+                throw console.error('Description must be <= 500 charecters');
+            }
             setPetDescription(e.target.value)
         }
     }
@@ -68,12 +72,15 @@ export const AddPet = () => {
                     <label htmlFor="pet-name">Pet name:</label>
                     <input type="text" name="name" className="add-input" id="name" placeholder="Bruno" value={petName} />
                     <p className={classNameIsValid.name? 'valid-inputs': 'errors'}>The Name should be at least 2 characters</p>
+
                     <label htmlFor="img">Image url:</label>
                     <input type="text" name="img" className="add-input" id="img" placeholder="http:// or https://" value={petImg} />
                     <p className={classNameIsValid.img? 'valid-inputs': 'errors'}>Image must be a valid URL</p>
+
                     <label htmlFor="lostData">Data of lost:</label>
                     <input type="text" id="lostData" className="add-input" name="lostData" placeholder="19.06.2022" value={petLostData} />
                     <p className={classNameIsValid.lostData? 'valid-inputs': 'errors'}>The Date should be at 10 characters long</p>
+                    
                     <label htmlFor="lost-in-sity">Lost in sity:</label>
                     <input type="text" id="city" className="add-input" name="city" placeholder="Sofia" value={petCity} />
                     <p className={classNameIsValid.city? 'valid-inputs': 'errors'}>The City should be at min 3 characters long</p>
