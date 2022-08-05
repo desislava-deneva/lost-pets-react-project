@@ -12,10 +12,13 @@ import { EditPage } from './components/EditPage/EditPage';
 import { Logout } from './components/Logout/Logout';
 import { AuthContext } from './contexts/AuthContext'
 import { MyProfaile } from './components/MyProfaile/MyProfaile';
+import * as api from '../src/api/data';
 
 function App() {
+
   const [user, setUserInfo] = useState({ username: '', authToken: '', _id: '', name: '' });
   const [classNameIsValid, setClassNameIsValid] = useState({ name: '', img: '', lostData: '', city: '', neighborhood: '', type: '', description: '' });
+  const [isEdit, setIsEdit] = useState(false);
 
 
   const onLogin = (data) => {
@@ -24,7 +27,6 @@ function App() {
 
   const onLogout = () => {
     setUserInfo({ username: "", authToken: "", _id: "", names: "" });
-
   }
 
   const onRegister = (data) => {
@@ -34,7 +36,6 @@ function App() {
   }
 
   const validateFormData = (e) => {
-    console.log(e.target);
     const eventValue = e.target.value;
     const eventName = e.target.name;
     if (eventName === "name") {
@@ -68,14 +69,27 @@ function App() {
         setClassNameIsValid({ ...classNameIsValid, type: true }) :
         setClassNameIsValid({ ...classNameIsValid, type: false })
     } else if (eventName === "description") {
-      eventValue.length > 500? 
-      setClassNameIsValid({ ...classNameIsValid, description: false }) :
+      eventValue.length > 500 ?
+        setClassNameIsValid({ ...classNameIsValid, description: false }) :
         setClassNameIsValid({ ...classNameIsValid, description: true })
     }
   }
 
+  const onEditUserProfaileHandler = (e) => {
+    if (!isEdit) {
+      setIsEdit(true);
+    } else {
+      const { name, username } = document.getElementsByTagName('input')
+
+      setIsEdit(false);
+      setUserInfo({ ...user, name: name.value, username: username.value })
+      api.updateUserProfaile({ ...user, name: name.value, username: username.value })
+    }
+  }
+
+
   return (
-    <AuthContext.Provider value={{ user, onLogin, onLogout, onRegister, validateFormData, classNameIsValid }}>
+    <AuthContext.Provider value={{ user, onLogin, onLogout, onRegister, validateFormData, classNameIsValid, onEditUserProfaileHandler, isEdit }}>
       <BrowserRouter>
         <div className="App">
           <NavBar />

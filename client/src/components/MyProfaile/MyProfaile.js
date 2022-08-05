@@ -7,9 +7,8 @@ import profailePicture from './unisex-image.jpeg';
 
 export const MyProfaile = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, onEditUserProfaileHandler, isEdit } = useContext(AuthContext);
     const [myPets, setMyPets] = useState([]);
-    const [isClicked, setIsClicked] = useState();
 
     useEffect(() => {
         try {
@@ -25,17 +24,9 @@ export const MyProfaile = () => {
 
     }, []);
 
-    let nameInput = <input type="name" name='name'  />
+    let nameInput = <input type="name" name='name' />
     let usernameInput = <input type="username" name='username' />
 
-    const onEditUserProfaileHandler = (e) => {
-        if(!isClicked){
-            setIsClicked(true);
-        }else{
-            // const {name, username} = document.getElementsByTagName('input')
-            setIsClicked(false);
-        }
-    }
 
     return (
         <div className="my-profaile-page">
@@ -43,9 +34,9 @@ export const MyProfaile = () => {
                 <img src={profailePicture} alt="img" className='profaile-picture' />
                 <ul>
                     <li>Name: {user.name}</li>
-                    {isClicked ? nameInput : ""}
+                    {isEdit ? nameInput : ""}
                     <li>Username: {user.username}</li>
-                    {isClicked? usernameInput :""}
+                    {isEdit ? usernameInput : ""}
                 </ul>
                 <button onClick={onEditUserProfaileHandler}>Edit profaile</button>
             </div>

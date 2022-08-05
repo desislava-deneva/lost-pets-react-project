@@ -33,7 +33,6 @@ async function register(name, username, password) {
 async function login(username, password) {
     // check if user exists
     const user = await User.findOne({ username: new RegExp(`^${username}$`, 'i') });
-
     if (!user) {
         throw new Error('Incorrect username or password');
     }
@@ -54,6 +53,7 @@ function logout(token) {
 
 function createSession(user) {
     const payload = {
+        name: user.name,
         username: user.username,
         _id: user._id
     };
@@ -75,17 +75,21 @@ function validateToken(token) {
     return jwt.verify(token, JWT_SECRET);
 }
 
-async function updateUserInfo(user) {
-    const existing = await User.findOne({ username: new RegExp(`^${user.username}$`, 'i') });
-
-    if (!user) {
-        throw new Error('Incorrect username');
+async function updateUserInfo(id, user) {
+    const existing = await User.findById(id);
+    if (!id) {
+        throw new Error('Id not existing');
     }
 
-    existing.name = user.name,
-    existing.username = user.username
-
+    existing.name = user.name;
+    existing.username = user.username;
+    existing.accessToken = existing.accessToken;
+    existing._id = existing._id;
     await existing.save();
+    
+    return {
+        existing
+    };
 }
 
 module.exports = {

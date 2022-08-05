@@ -2,7 +2,6 @@ const api = require('../services/user');
 const { isAuth, isOwner } = require('../middlewares/guards');
 const router = require('express').Router();
 
-
 router.post('/register', async (req, res) => {
     const { name, username, password } = req.body;
 
@@ -30,6 +29,7 @@ router.post('/login', async (req, res) => {
 router.get('/my-profail/:id', isAuth(), async (req, res) => {
 
     const { user } = req.body;
+    console.log(user)
     try {
         const result = await api.getUserByUsername(user.username);
         res.json(result);
@@ -39,19 +39,20 @@ router.get('/my-profail/:id', isAuth(), async (req, res) => {
     }
 });
 
-router.post('/user-info', isAuth(), async (req, res) => {
+router.get('/user-info/:id', async (req, res) => {
+    res.json(req.user);
+})
 
-    const { user } = req.body;
+router.put('/user-info/:id', async (req, res) => {
 
+    const data = req.body;
     try {
-        const result = await api.updateUserInfo(user);
+        const result = await api.updateUserInfo(data._id, data);
         res.json(result);
     } catch (err) {
         console.error(err);
         res.status(400).json({ message: err.message });
     }
-
-
 })
 
 router.get('/logout', (req, res) => {

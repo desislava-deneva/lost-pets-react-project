@@ -52,9 +52,9 @@ export async function deleteRecord(id) {
 }
 
 export async function getUserByUsername(id) {
-    return await api.get(host + '/users/my-profail'+id);
+    return await api.get(host + '/users/my-profail' + id);
 }
 
 export async function updateUserProfaile(user) {
-    return await api.post(host + '/users/user-info', user);
+    return await api.put(host + '/users/user-info/' + user.id, user);
 }

@@ -4,7 +4,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import * as api from '../../api/data'
 
-
 export const EditPage = (props) => {
     const { validateFormData, classNameIsValid } = useContext(AuthContext);
 
@@ -20,7 +19,6 @@ export const EditPage = (props) => {
                 console.log(result)
             })
     }, [id])
-
 
     const onChangeHandler = (e) => {
         if (e.target.name === "name") {
@@ -65,9 +63,6 @@ export const EditPage = (props) => {
         } else {
             alert('Fill correct all fields')
         }
-
-
-
     }
     return (
         <section className="add" onBlur={(e) => validateFormData(e)}>
