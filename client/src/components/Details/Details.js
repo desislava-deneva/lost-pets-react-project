@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Likes } from '../Likes/Likes';
 import { useParams } from 'react-router-dom';
 import { GoogleMap } from '../GoogleMap/GoogleMap';
+import { Comments } from '../Comments/Comments'
 import * as api from '../../api/data';
 
 export const Details = (props) => {
@@ -44,18 +45,16 @@ export const Details = (props) => {
                     </div>
                     {userId === undefined || pet.owner === userId ? '' : <Likes petsId={id} />}
 
-                    {userId !== undefined && pet.owner === userId ? <EditDeleteButtons pet={pet} /> : ""}
+                    {userId !== undefined && pet.owner === userId ?
+                        <div>
+                            <EditDeleteButtons pet={pet} />
+                        </div>
+                        : ""
+                    }
+                    <button className='comment-button'>Comment</button>
                 </div>
 
-                <div className="comments">
-                    <h2>Comments:</h2>
-                    <ul>
-                        <li>Comment 1 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply </li>
-                        <li>Comment 2</li>
-                        <li>Comment 3</li>
-                        <li>Comment 4</li>
-                    </ul>
-                </div>
+                <Comments />
             </div>
             <GoogleMap />
         </article>
