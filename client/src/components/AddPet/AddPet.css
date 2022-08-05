@@ -14,7 +14,7 @@
 
 label {
     font-size: 130%;
-    padding: 1px;
+    padding: 0px;
 }
 
 .add-title {
@@ -25,10 +25,11 @@ label {
 .add-form {
     padding: 12px;
     max-width: 700px;
-    margin: 0 auto;
+    margin: auto;
     flex-direction: column;
     display: flex;
-    align-items: center;
+    gap: 0px;
+    /* align-items: center; */
 }
 
 .add-input {
@@ -59,7 +60,7 @@ label {
     cursor: pointer;
 }
 
-textarea:hover{
+textarea:hover {
     background-color: rgb(216, 214, 214);
     cursor: pointer;
 }
@@ -74,6 +75,18 @@ h2 {
     color: black;
 }
 
-textarea{
+textarea {
     border-radius: 5px;
+}
+
+.errors {
+    font-size: 66%;
+    color: #d81009;
+    min-height: 1px;
+}
+
+.valid-inputs {
+    font-size: 66%;
+    color: #05da21;
+    min-height: 1px;
 }
