@@ -75,22 +75,28 @@ function validateToken(token) {
     return jwt.verify(token, JWT_SECRET);
 }
 
-async function updateUserInfo(id, user) {
-    const existing = await User.findById(id);
+async function updateUserInfo(id, oldUser) {
+    const user = await User.findById(id);
     if (!id) {
         throw new Error('Id not existing');
     }
 
-    existing.name = user.name;
-    existing.username = user.username;
-    existing.accessToken = existing.accessToken;
-    existing._id = existing._id;
-    await existing.save();
-    
-    return {
-        existing
-    };
+    const isExistingThisUsername = await User.findOne({ username: new RegExp(`^${oldUser.username}$`, 'i') });
+
+    if (isExistingThisUsername.username == oldUser.username && oldUser._id != isExistingThisUsername._id) {
+        throw new Error('Username is taken');
+    } else {
+        user.name = oldUser.name;
+        user.username = oldUser.username;
+        user.accessToken = user.accessToken;
+        user._id = user._id;
+        await user.save();
+
+        return user;
+    }
 }
+
+
 
 module.exports = {
     register,

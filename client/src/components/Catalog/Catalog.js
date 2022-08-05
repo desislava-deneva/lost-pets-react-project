@@ -5,7 +5,6 @@ import * as api from '../../api/data';
 
 export const Catalog = (props) => {
     const [pets, setPets] = useState([]);
-    const text = 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo dolores, quasi pariatur odio repellat dicta quas libero nulla quo quisquam porro architecto officiis! Laudantium hic ab est nemo voluptatem dolor'
 
     useEffect(() => {
         api.getPets()
@@ -40,7 +39,8 @@ export const Catalog = (props) => {
                 </select>
             </div>
             <div className='list'>
-                {pets.map(pet => <Pet key={pet._id} pet={pet} />)}
+                
+                {pets? pets.map(pet => <Pet key={pet._id} pet={pet} />): <h1>No pets in database</h1>}
             </div>
         </div>
     )

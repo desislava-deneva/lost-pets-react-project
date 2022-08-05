@@ -57,3 +57,7 @@
 .dropdown:hover .dropbtn {
   background-color: rgb(238, 227, 227);
 }
+
+.list>h1{
+  padding-top: 200px;
+}

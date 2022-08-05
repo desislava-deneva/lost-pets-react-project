@@ -20,7 +20,6 @@ function App() {
   const [classNameIsValid, setClassNameIsValid] = useState({ name: '', img: '', lostData: '', city: '', neighborhood: '', type: '', description: '' });
   const [isEdit, setIsEdit] = useState(false);
 
-
   const onLogin = (data) => {
     setUserInfo({ username: data.username, authToken: data.accessToken, _id: data._id, name: data.name })
   }
@@ -75,18 +74,29 @@ function App() {
     }
   }
 
-  const onEditUserProfaileHandler = (e) => {
+  const onEditUserProfaileHandler = async (e) => {
     if (!isEdit) {
       setIsEdit(true);
     } else {
       const { name, username } = document.getElementsByTagName('input')
-
+      if(!name.value && !username.value){
+        alert('Fill name and username');
+      }
       setIsEdit(false);
-      setUserInfo({ ...user, name: name.value, username: username.value })
-      api.updateUserProfaile({ ...user, name: name.value, username: username.value })
+
+      try {
+        const newUser = await api.updateUserProfaile({ ...user, name: name.value, username: username.value });
+        if (newUser) {
+          setUserInfo({ ...user, name: newUser.name, username: newUser.username })
+        }
+
+      } catch (error) {
+        setUserInfo({ ...user })
+        throw new Error(error.message)
+      }
+
     }
   }
-
 
   return (
     <AuthContext.Provider value={{ user, onLogin, onLogout, onRegister, validateFormData, classNameIsValid, onEditUserProfaileHandler, isEdit }}>

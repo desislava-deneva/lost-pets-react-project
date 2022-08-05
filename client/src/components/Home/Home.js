@@ -22,7 +22,7 @@ export const Home = (props) => {
         <div className="home-list">
             <div className="home-pets">
                 <h1>Last lost pets</h1>
-                {pets.map(pet => <Pet key={pet._id} pet={pet} />)}
+                {pets? pets.map(pet => <Pet key={pet._id} pet={pet} /> ): <h1>No pets in database</h1>}
             </div>
         </div>
 
