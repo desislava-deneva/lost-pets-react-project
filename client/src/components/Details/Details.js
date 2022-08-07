@@ -1,7 +1,6 @@
 import './Details.css'
 import { EditDeleteButtons } from '../EditDeleteButtons/EditDeleteButtons'
-import { useState, useEffect, useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
+import { useState, useEffect } from 'react';
 import { Likes } from '../Likes/Likes';
 import { useParams } from 'react-router-dom';
 import { GoogleMap } from '../GoogleMap/GoogleMap';
@@ -10,8 +9,6 @@ import * as api from '../../api/data';
 
 export const Details = (props) => {
     const [pet, setPet] = useState({});
-    const { buttonComment } = useContext(AuthContext);
-
 
     const userId = sessionStorage.userId;
     const params = useParams();
@@ -22,7 +19,6 @@ export const Details = (props) => {
                 setPet(result)
             })
     }, []);
-
 
     //TODO when pet is Found setup Faund pet div
     const [isFounded, setIsFounded] = useState(false);
@@ -42,7 +38,6 @@ export const Details = (props) => {
                     <h5>Data Of Lost: {pet.dataLost} </h5>
                     <h5>City: {pet.city}</h5>
                     <h5>Neighborhood: {pet.neighborhood}</h5>
-
                     <div className="description-details">
                         {pet.description}
                     </div>

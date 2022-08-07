@@ -20,6 +20,8 @@ const itemSchema = new Schema({
     description: { type: String, default: ' ', maxlength: [500, 'Description must be max 500 characters long'] },
     likes: { type: [ObjectId], ref: 'User', default: [] },
     owner: { type: ObjectId, ref: 'User', required: true }, 
+    comments: [{ type: [ObjectId], ref: 'Comment', default: [] }],
+
 });
 
 const Item = model('Item', itemSchema);

@@ -11,7 +11,7 @@ export const Register = () => {
     const navigate = useNavigate();
 
     const { onRegister } = useContext(AuthContext)
-    const [classNameIsValid, setClassNameIsValid] =
+    const [validationForm, setValidationForm] =
         useState(
             { user: { name: '', username: '', password: '', repass: '' } }
         );
@@ -39,10 +39,9 @@ export const Register = () => {
 
         if (!username) {
             return alert('Your username do not match.');
-
         }
 
-        if (classNameIsValid.user.name && classNameIsValid.user.username && classNameIsValid.user.password) {
+        if (validationForm.user.name && validationForm.user.username && validationForm.user.password) {
             await api.register(name, username, password)
 
             onRegister({ name, username })
@@ -52,7 +51,6 @@ export const Register = () => {
         }
 
         e.target.reset();
-
     }
 
     const validateFormData = (e) => {
@@ -63,20 +61,18 @@ export const Register = () => {
         if (parentElement.className === 'register-form' || parentElement.className === 'my-profaile') {
             if (eventName === 'name') {
                 eventValue.length >= 3 ?
-                    setClassNameIsValid({ user: { ...classNameIsValid.user, name: true } }) :
-                    setClassNameIsValid({ user: { ...classNameIsValid.user, name: false } });
-
+                    setValidationForm({ user: { ...validationForm.user, name: true } }) :
+                    setValidationForm({ user: { ...validationForm.user, name: false } });
             } else if (eventName === 'username') {
                 eventValue.length >= 3 ?
-                    setClassNameIsValid({ user: { ...classNameIsValid.user, username: true } }) :
-                    setClassNameIsValid({ user: { ...classNameIsValid.user, username: false } });
+                    setValidationForm({ user: { ...validationForm.user, username: true } }) :
+                    setValidationForm({ user: { ...validationForm.user, username: false } });
             } else if (eventName === 'password') {
                 eventValue.length >= 4 ?
-                    setClassNameIsValid({ user: { ...classNameIsValid.user, password: true } }) :
-                    setClassNameIsValid({ user: { ...classNameIsValid.user, password: false } });
+                    setValidationForm({ user: { ...validationForm.user, password: true } }) :
+                    setValidationForm({ user: { ...validationForm.user, password: false } });
             }
         }
-
     }
 
     return (
@@ -84,19 +80,19 @@ export const Register = () => {
             <section className="register" onBlur={(e) => validateFormData(e)}>
                 <h2 className="register-title">Register form</h2>
                 <form className="register-form" onSubmit={onRegisterHandler} >
+
                     <input type="text" name="name" id="name" className="register-input" placeholder="Ivan Ivanov" />
-                    <p className={classNameIsValid.user.name ? 'valid-inputs' : 'errors'}>The Name should be at least 3 characters</p>
+                    <p className={validationForm.user.name ? 'valid-inputs' : 'errors'}>The Name should be at least 3 characters</p>
 
                     <input type="username" id="username" name="username" className="register-input" placeholder="Username" />
-                    <p className={classNameIsValid.user.username ? 'valid-inputs' : 'errors'}>The Username should be at least 3 characters</p>
+                    <p className={validationForm.user.username ? 'valid-inputs' : 'errors'}>The Username should be at least 3 characters</p>
 
                     <input type="password" id="password" name="password" className="register-input" placeholder="Password" />
-                    <p className={classNameIsValid.user.password ? 'valid-inputs' : 'errors'}>Your password should be at least 4 characters</p>
+                    <p className={validationForm.user.password ? 'valid-inputs' : 'errors'}>Your password should be at least 4 characters</p>
 
                     <input type="password" id="repass" name="repass" className="register-input" placeholder="Confirm password" />
                     <input type="submit" className="register-submit" value="Register" />
                 </form>
-
             </section>
         </section>
     );

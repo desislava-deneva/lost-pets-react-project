@@ -1,4 +1,5 @@
 const Item = require('../models/Item');
+const Comment = require('../models/Comment');
 
 
 async function getAll(query) {
@@ -20,7 +21,8 @@ async function create(item) {
         img: item.img,
         description: item.description,
         likes: [],
-        owner: item.owner
+        owner: item.owner,
+        comments: []
     });
 
     await result.save();
@@ -44,6 +46,7 @@ async function updateById(existing, item) {
         existing.type = item.type,
         existing.owner = existing.owner;
     existing.likes = existing.likes;
+    existing.comments = existing.comments;
     await existing.save();
 
 
@@ -84,6 +87,20 @@ async function deleteById(id) {
     return await Item.findByIdAndDelete(id);
 }
 
+async function comments(id, data) {
+    const comment = new Comment({
+        text: data,
+        post: id
+    })
+    await comment.save();
+
+    const postRelated = await Item.findById(id);
+    postRelated.comments.push(comment);
+    await postRelated.save();
+
+    return postRelated;
+}
+
 module.exports = {
     getAll,
     create,
@@ -91,5 +108,6 @@ module.exports = {
     updateById,
     like,
     unlike,
-    deleteById
+    deleteById,
+    comments
 };

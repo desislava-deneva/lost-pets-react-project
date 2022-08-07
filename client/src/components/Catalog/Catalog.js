@@ -1,34 +1,26 @@
 import './Catalog.css'
 import { Pet } from '../Pet/Pet'
-import { useState, useEffect } from 'react';
-import * as api from '../../api/data';
+import { useState, useContext } from 'react';
+import { PetContext } from '../../contexts/PetContext';
 
 export const Catalog = (props) => {
-    const [pets, setPets] = useState([]);
-
-    useEffect(() => {
-        api.getPets()
-            .then(result => {
-                setPets(result)
-            });
-
-    }, []);
+    const [sortedPets, setSortedPets] = useState([]);
+    const { pets } = useContext(PetContext)
 
     const onSelectSort = (e) => {
         const dropValue = e.target.value;
-        api.getPets()
-            .then(result => {
-                if (dropValue === 'name') {
-                    setPets(result.sort((a, b) => a.name.localeCompare(b.name)))
-                } else if (dropValue === 'city') {
-                    setPets(result.sort((a, b) => a.city.localeCompare(b.city)))
-                } else {
-                    setPets(result)
-                }
-            });
+
+        if (dropValue === 'name') {
+            setSortedPets(pets.sort((a, b) => a.name.localeCompare(b.name)))
+        } else if (dropValue === 'city') {
+            setSortedPets(pets.sort((a, b) => a.city.localeCompare(b.city)))
+        } else {
+            setSortedPets(pets)
+        }
     }
 
     return (
+
         <div className="calalog">
             <div className="dropdown" onChange={onSelectSort}>
                 <select className="dropbtn" name="sort">
@@ -39,8 +31,8 @@ export const Catalog = (props) => {
                 </select>
             </div>
             <div className='list'>
-                
-                {pets? pets.map(pet => <Pet key={pet._id} pet={pet} />): <h1>No pets in database</h1>}
+
+                {sortedPets ? sortedPets.map(pet => <Pet key={pet._id} pet={pet} />) : <h1>No pets in database</h1>}
             </div>
         </div>
     )

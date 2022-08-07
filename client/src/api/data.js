@@ -29,10 +29,15 @@ export async function postLikeById(id) {
     return await api.post(host + '/data/catalog/' + id + '/like');
 }
 
-export async function getMyPet() {
-    const userId = sessionStorage.getItem('userId');
-    return await api.get(host + `/data/catalog?where=_ownerId%3D%22${userId}%22`);
+export async function getCommentsById(id) {
+    return await api.get(host + '/data/catalog/' + id + '/comments');
 }
+
+export async function postCommentById(id, comment) {
+    return await api.get(host + '/data/catalog/' + id + '/comments', comment);
+}
+
+
 
 export async function createRecord(data) {
     return await api.post(host + '/data/catalog', data);
@@ -61,5 +66,4 @@ export async function updateUserProfaile(user) {
     sessionStorage.setItem('name', result.name);
 
     return result;
-
 }

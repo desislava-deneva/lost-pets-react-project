@@ -12,10 +12,10 @@ import { EditPage } from './components/EditPage/EditPage';
 import { Logout } from './components/Logout/Logout';
 import { MyProfaile } from './components/MyProfaile/MyProfaile';
 import { AuthProvider } from './contexts/AuthContext'
+import { PetProvider } from './contexts/PetContext'
+
 
 function App() {
-
-  const [user, setUserInfo] = useState({ username: '', authToken: '', _id: '', name: '', img: '' });
   const [buttonComment, setButtonComment] = useState(false);
 
   const setButtonCommentHandler = (e) => {
@@ -24,24 +24,25 @@ function App() {
 
   return (
     <AuthProvider>
-      {/* <AuthContext.Provider value={{ validateFormData, classNameIsValid, onEditUserProfaileHandler, isEdit, buttonComment, setButtonCommentHandler, setButtonComment }}> */}
       <BrowserRouter>
         <div className="App">
-          <NavBar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/create" element={<AddPet />} />
-            <Route path="/catalog" element={<Catalog />} />
-            <Route path='/details/:id' element={<Details />} />
-            <Route path='/edit/:id' element={<EditPage edit={{ edit: "Edit", textBtn: "Edit" }} />} />
-            <Route path='/logout' element={<Logout />} />
-            <Route path='/my-profail' element={<MyProfaile />} />
-          </Routes>
+          <PetProvider>
+            <NavBar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/create" element={<AddPet />} />
+              <Route path="/catalog" element={<Catalog />} />
+              <Route path='/details/:id' element={<Details />} />
+              <Route path='/edit/:id' element={<EditPage edit={{ edit: "Edit", textBtn: "Edit" }} />} />
+              <Route path='/logout' element={<Logout />} />
+              <Route path='/my-profail' element={<MyProfaile />} />
+            </Routes>
+          </PetProvider>
+
         </div>
       </BrowserRouter>
-      {/* </AuthContext.Provider> */}
     </AuthProvider>
   );
 }

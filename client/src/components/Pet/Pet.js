@@ -1,16 +1,10 @@
-// import { LikeButton } from '../Likes/Likes'
 import './Pet.css'
 import { Link } from 'react-router-dom';
 
 export const Pet = (props) => {
 
     const onClickDescriptionHandler=((e)=>{
-        console.log(e.target.className);
-        if(e.target.className ==='hover'){
-            e.target.className= 'pet-description'
-        }else{
-            e.target.className= 'hover'
-        }
+            e.target.className= 'pet-description hover'
     })
     
     return (

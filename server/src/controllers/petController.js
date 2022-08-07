@@ -4,6 +4,8 @@ const { isAuth, isOwner } = require('../middlewares/guards');
 const preload = require('../middlewares/preload');
 const api = require('../services/petServices');
 const errorMapper = require('../util/errorMapper');
+const Comment = require('../models/Comment');
+
 
 
 router.get('/', async (req, res) => {
@@ -101,6 +103,24 @@ router.post('/:id/unlike', preload(api), isAuth(), async (req, res) => {
         const item = await api.unlike(userId, id);
         res.json(item)
     } catch (err) {
+        console.error(err);
+        res.status(404).json({ message: err });
+    }
+})
+
+router.get('/:id/comments', preload(api), async (req, res) => {
+    res.json(res.locals.item.comments);
+    console.log('in get /details/:id')
+})
+
+router.post('/:id/comments', async (req, res) => {
+    const id = req.params.id;
+
+    try{
+        const item = await api.comments(id, req.body.comment);
+        res.json(item)
+
+    }catch(err){
         console.error(err);
         res.status(404).json({ message: err });
     }
