@@ -85,10 +85,12 @@ async function updateUserInfo(id, newUser) {
         throw new Error('Id not existing');
     }
 
-    const isExistingThisUsername = await User.findOne({ username: new RegExp(`^${user.username}$`, 'i') });
+    const isExistingThisUsername = await User.findOne({ username: new RegExp(`^${newUser?.username}$`, 'i') });
 
-    if (isExistingThisUsername.username == newUser.username && newUser._id != isExistingThisUsername._id) {
-        throw new Error('Username is taken');
+    if (isExistingThisUsername && isExistingThisUsername.hasOwnProperty('username') && newUser.hasOwnProperty('username')) {
+        if (isExistingThisUsername.username == newUser?.username && newUser._id != isExistingThisUsername._id) {
+            throw new Error('Username is taken');
+        }
     }
 
     if (newUser?.username && newUser?.name && newUser?.img) {
@@ -99,6 +101,7 @@ async function updateUserInfo(id, newUser) {
         user.img = newUser.img
         await user.save();
     } else {
+
         if (newUser?.username) {
             user.username = newUser.username;
         }
@@ -113,12 +116,9 @@ async function updateUserInfo(id, newUser) {
         user.accessToken = user.accessToken;
         user._id = user._id;
         await user.save();
-
     }
 
-
     return user;
-
 }
 
 

@@ -26,9 +26,19 @@ h2 {
   color: black;
   font-family: 'EB Garamond', serif;
 }
+
 input {
   border-radius: 5px;
-}
+  height: 30px;
+  background-color: #e6e6e6;
+  border: none;
+  resize: none;
+  outline: none;
+  }
+
+  input:hover{
+    background-color: #b9afaf;
+  }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

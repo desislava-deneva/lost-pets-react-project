@@ -41,7 +41,7 @@ export const MyProfaile = () => {
                     <li>Username: {user.username}</li>
                     {isEdit ? usernameInput : ""}
                 </ul>
-                <button onClick={onEditUserProfaileHandler}>Edit profaile</button>
+                <div className='edit-profaile' onClick={onEditUserProfaileHandler}>Edit profaile</div>
             </div>
             <div className="my-pets">
                 <h2>My lost pets</h2>

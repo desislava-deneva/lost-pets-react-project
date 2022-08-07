@@ -10,7 +10,14 @@
   
   #edit-delete-buttons>a:hover {
     background-color: #b9afaf;
+
+    
 }
+
+.edit-delete-buttons>a:hover {
+  background-color: #b9afaf;
+}
+
 
 #isFount:hover{
   text-transform: uppercase;
