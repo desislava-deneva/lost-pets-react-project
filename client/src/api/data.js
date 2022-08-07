@@ -56,5 +56,10 @@ export async function getUserByUsername(id) {
 }
 
 export async function updateUserProfaile(user) {
-    return await api.put(host + '/users/user-info/' + user.id, user);
+    const result = await api.put(host + '/users/user-info/' + user.id, user);
+    sessionStorage.setItem('username', result.username);
+    sessionStorage.setItem('name', result.name);
+
+    return result;
+
 }

@@ -116,9 +116,13 @@ async function updateUserInfo(id, newUser) {
         user.accessToken = user.accessToken;
         user._id = user._id;
         await user.save();
+        return user;
+
     }
 
     return user;
+
+
 }
 
 

@@ -24,15 +24,15 @@ export const MyProfaile = () => {
     }, []);
 
     let nameInput = <input type="name" name='name' placeholder='Ivan Ivanov' />
-    let usernameInput = <input type="username" name='username'  placeholder='Username' />
-    let userImg = <input type="img" name='img' placeholder='Image url'/>
+    let usernameInput = <input type="username" name='username' placeholder='Username' />
+    let userImg = <input type="img" name='img' placeholder='Image url' />
 
 
     return (
         <div className="my-profaile-page">
             <div className="my-profaile">
 
-                <img src={user.img? user.img : profailePicture} alt="img" className='profaile-picture' />
+                <img src={user.img ? user.img : profailePicture} alt="img" className='profaile-picture' />
                 {isEdit ? userImg : ""}
 
                 <ul>
