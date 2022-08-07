@@ -6,6 +6,7 @@ const userSchema = new Schema({
     name: {type: String, required: true, minlength: [3, 'Names must be leat 3 charecters']},
     username: { type: String, required: true, minlength: [5, 'Username must be leat 5 charecters '] },
     hashedPassword: { type: String },
+    img: ''
 });
 
 userSchema.index({ email: 1 }, {

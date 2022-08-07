@@ -16,22 +16,25 @@ import * as api from '../src/api/data';
 
 function App() {
 
-  const [user, setUserInfo] = useState({ username: '', authToken: '', _id: '', name: '' });
+  const [user, setUserInfo] = useState({ username: '', authToken: '', _id: '', name: '', img: '' });
+  console.log(user);
   const [classNameIsValid, setClassNameIsValid] = useState({ name: '', img: '', lostData: '', city: '', neighborhood: '', type: '', description: '' });
   const [isEdit, setIsEdit] = useState(false);
+  const [buttonComment, setButtonComment] = useState(false);
+
 
   const onLogin = (data) => {
-    setUserInfo({ username: data.username, authToken: data.accessToken, _id: data._id, name: data.name })
+    setUserInfo({ ...user, username: data.username, authToken: data.accessToken, _id: data._id, name: data.name, img: data.img })
   }
 
   const onLogout = () => {
-    setUserInfo({ username: "", authToken: "", _id: "", names: "" });
+    setUserInfo({ username: "", authToken: "", _id: "", names: "", img: "" });
   }
 
   const onRegister = (data) => {
     let token = sessionStorage.getItem('authToken');
     let userId = sessionStorage.getItem('userId');
-    setUserInfo({ username: data.username, authToken: token, _id: userId, name: data.name })
+    setUserInfo({ username: data.username, authToken: token, _id: userId, name: data.name, img: "" })
   }
 
   const validateFormData = (e) => {
@@ -78,18 +81,19 @@ function App() {
     if (!isEdit) {
       setIsEdit(true);
     } else {
-      const { name, username } = document.getElementsByTagName('input')
-      if(!name.value && !username.value){
-        alert('Fill name and username');
-      }
+      const { img, name, username } = document.getElementsByTagName('input');
+
       setIsEdit(false);
 
       try {
-        const newUser = await api.updateUserProfaile({ ...user, name: name.value, username: username.value });
-        if (newUser) {
-          setUserInfo({ ...user, name: newUser.name, username: newUser.username })
-        }
+        const newUser = await api.updateUserProfaile({ ...user, name: name.value, username: username.value, img: img.value });
 
+        if (img.value) {
+          const URL_PATTERN = /^https?:\/\/(.+)/;
+        }
+       
+          setUserInfo({ ...user, name: newUser.name, username: newUser.username, img: newUser.img})
+        
       } catch (error) {
         setUserInfo({ ...user })
         throw new Error(error.message)
@@ -98,8 +102,12 @@ function App() {
     }
   }
 
+  const setButtonCommentHandler = (e) => {
+    setButtonComment(true);
+  }
+
   return (
-    <AuthContext.Provider value={{ user, onLogin, onLogout, onRegister, validateFormData, classNameIsValid, onEditUserProfaileHandler, isEdit }}>
+    <AuthContext.Provider value={{ user, onLogin, onLogout, onRegister, validateFormData, classNameIsValid, onEditUserProfaileHandler, isEdit, buttonComment, setButtonCommentHandler, setButtonComment }}>
       <BrowserRouter>
         <div className="App">
           <NavBar />

@@ -18,19 +18,23 @@ export const MyProfaile = () => {
                     setMyPets(result);
                 })
         } catch (error) {
-            alert(error.message)
             throw new error(error);
         }
 
     }, []);
 
-    let nameInput = <input type="name" name='name'/>
-    let usernameInput = <input type="username" name='username' />
+    let nameInput = <input type="name" name='name' placeholder='Ivan Ivanov' />
+    let usernameInput = <input type="username" name='username'  placeholder='Username' />
+    let userImg = <input type="img" name='img' placeholder='Image url'/>
+
 
     return (
         <div className="my-profaile-page">
             <div className="my-profaile">
-                <img src={profailePicture} alt="img" className='profaile-picture' />
+
+                <img src={user.img? user.img : profailePicture} alt="img" className='profaile-picture' />
+                {isEdit ? userImg : ""}
+
                 <ul>
                     <li>Name: {user.name}</li>
                     {isEdit ? nameInput : ""}
@@ -41,7 +45,7 @@ export const MyProfaile = () => {
             </div>
             <div className="my-pets">
                 <h2>My lost pets</h2>
-                {myPets ? myPets.map(pet => <Pet key={pet._id} pet={pet} />): <h1>No pets in database</h1>}
+                {myPets ? myPets.map(pet => <Pet key={pet._id} pet={pet} />) : <h1>No pets in database</h1>}
             </div>
         </div>
     )

@@ -22,7 +22,8 @@ async function register(name, username, password) {
     const user = new User({
         name,
         username,
-        hashedPassword
+        hashedPassword,
+        img: ''
     });
 
     await user.save();
@@ -36,6 +37,7 @@ async function login(username, password) {
     if (!user) {
         throw new Error('Incorrect username or password');
     }
+
 
     // verify password
     const match = await bcrypt.compare(password, user.hashedPassword);
@@ -55,7 +57,8 @@ function createSession(user) {
     const payload = {
         name: user.name,
         username: user.username,
-        _id: user._id
+        _id: user._id,
+        img: user.img
     };
 
     const accessToken = jwt.sign(payload, JWT_SECRET);
@@ -64,7 +67,8 @@ function createSession(user) {
         name: user.name,
         username: user.username,
         accessToken,
-        _id: user._id
+        _id: user._id,
+        img: user.img
     };
 }
 
@@ -75,25 +79,46 @@ function validateToken(token) {
     return jwt.verify(token, JWT_SECRET);
 }
 
-async function updateUserInfo(id, oldUser) {
+async function updateUserInfo(id, newUser) {
     const user = await User.findById(id);
     if (!id) {
         throw new Error('Id not existing');
     }
 
-    const isExistingThisUsername = await User.findOne({ username: new RegExp(`^${oldUser.username}$`, 'i') });
+    const isExistingThisUsername = await User.findOne({ username: new RegExp(`^${user.username}$`, 'i') });
 
-    if (isExistingThisUsername.username == oldUser.username && oldUser._id != isExistingThisUsername._id) {
+    if (isExistingThisUsername.username == newUser.username && newUser._id != isExistingThisUsername._id) {
         throw new Error('Username is taken');
+    }
+
+    if (newUser?.username && newUser?.name && newUser?.img) {
+        user.name = newUser.name;
+        user.username = newUser.username;
+        user.accessToken = user.accessToken;
+        user._id = user._id;
+        user.img = newUser.img
+        await user.save();
     } else {
-        user.name = oldUser.name;
-        user.username = oldUser.username;
+        if (newUser?.username) {
+            user.username = newUser.username;
+        }
+        if (newUser?.name) {
+            user.name = newUser.name;
+        }
+
+        if (newUser?.img) {
+            user.img = newUser.img
+        }
+
         user.accessToken = user.accessToken;
         user._id = user._id;
         await user.save();
 
-        return user;
     }
+
+
+    return user;
+
 }
 
 
