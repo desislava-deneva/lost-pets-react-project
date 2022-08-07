@@ -17,8 +17,7 @@ import * as api from '../src/api/data';
 function App() {
 
   const [user, setUserInfo] = useState({ username: '', authToken: '', _id: '', name: '', img: '' });
-  console.log(user);
-  const [classNameIsValid, setClassNameIsValid] = useState({ name: '', img: '', lostData: '', city: '', neighborhood: '', type: '', description: '' });
+  const [classNameIsValid, setClassNameIsValid] = useState({ name: '', img: '', lostData: '', city: '', neighborhood: '', type: '', description: '', user: { name: '', username: '', password: '', repass: '' } });
   const [isEdit, setIsEdit] = useState(false);
   const [buttonComment, setButtonComment] = useState(false);
 
@@ -40,41 +39,62 @@ function App() {
   const validateFormData = (e) => {
     const eventValue = e.target.value;
     const eventName = e.target.name;
-    if (eventName === "name") {
-      eventValue.length < 2 ?
-        setClassNameIsValid({ ...classNameIsValid, name: false }) :
-        setClassNameIsValid({ ...classNameIsValid, name: true });
-    } else if (eventName === "img") {
-      const URL_PATTERN = /^https?:\/\/(.+)/;
-      URL_PATTERN.test(eventValue) ?
-        setClassNameIsValid({ ...classNameIsValid, img: true })
-        : setClassNameIsValid({ ...classNameIsValid, img: false });
-    } else if (eventName === "lostData") {
-      const LOST_DATA_PATTERN = /^[\d]{2}.[\d]{2}.[\d]{4}$/;
-      LOST_DATA_PATTERN.test(eventValue) ?
-        setClassNameIsValid({ ...classNameIsValid, lostData: true })
-        : setClassNameIsValid({ ...classNameIsValid, lostData: false })
-    } else if (eventName === "city") {
-      eventValue.length < 3 ?
-        setClassNameIsValid({ ...classNameIsValid, city: false }) :
-        setClassNameIsValid({ ...classNameIsValid, city: true });
-    } else if (eventName === "neighborhood") {
-      eventValue.length < 3 ?
-        setClassNameIsValid({ ...classNameIsValid, neighborhood: false }) :
-        setClassNameIsValid({ ...classNameIsValid, neighborhood: true });
-    } else if (eventName === "birthYear") {
-      Number(eventValue) < 2000 || Number(eventValue) > 2022 ?
-        setClassNameIsValid({ ...classNameIsValid, birthYear: false }) :
-        setClassNameIsValid({ ...classNameIsValid, birthYear: true })
-    } else if (eventName === "type") {
-      eventValue === 'Dog' || eventValue === 'Cat' ?
-        setClassNameIsValid({ ...classNameIsValid, type: true }) :
-        setClassNameIsValid({ ...classNameIsValid, type: false })
-    } else if (eventName === "description") {
-      eventValue.length > 500 ?
-        setClassNameIsValid({ ...classNameIsValid, description: false }) :
-        setClassNameIsValid({ ...classNameIsValid, description: true })
+    const parentElement = e.target.parentElement;
+
+    if (parentElement.className === 'register-form') {
+      if (eventName === 'name') {
+        eventValue.length >= 3 ?
+          setClassNameIsValid({ ...classNameIsValid, user: { ...classNameIsValid.user, name: true } }) :
+          setClassNameIsValid({ ...classNameIsValid, user: { ...classNameIsValid.user, name: false } });
+
+      } else if (eventName === 'username') {
+        eventValue.length >= 3 ?
+          setClassNameIsValid({ ...classNameIsValid, user: { ...classNameIsValid.user, username: true } }) :
+          setClassNameIsValid({ ...classNameIsValid, user: { ...classNameIsValid.user, username: false } });
+      } else if (eventName === 'password') {
+        eventValue.length >= 4 ?
+          setClassNameIsValid({ ...classNameIsValid, user: { ...classNameIsValid.user, password: true } }) :
+          setClassNameIsValid({ ...classNameIsValid, user: { ...classNameIsValid.user, password: false } });
+      }
+
+    } else {
+      if (eventName === "name") {
+        eventValue.length < 2 ?
+          setClassNameIsValid({ ...classNameIsValid, name: false }) :
+          setClassNameIsValid({ ...classNameIsValid, name: true });
+      } else if (eventName === "img") {
+        const URL_PATTERN = /^https?:\/\/(.+)/;
+        URL_PATTERN.test(eventValue) ?
+          setClassNameIsValid({ ...classNameIsValid, img: true })
+          : setClassNameIsValid({ ...classNameIsValid, img: false });
+      } else if (eventName === "lostData") {
+        const LOST_DATA_PATTERN = /^[\d]{2}.[\d]{2}.[\d]{4}$/;
+        LOST_DATA_PATTERN.test(eventValue) ?
+          setClassNameIsValid({ ...classNameIsValid, lostData: true })
+          : setClassNameIsValid({ ...classNameIsValid, lostData: false })
+      } else if (eventName === "city") {
+        eventValue.length < 3 ?
+          setClassNameIsValid({ ...classNameIsValid, city: false }) :
+          setClassNameIsValid({ ...classNameIsValid, city: true });
+      } else if (eventName === "neighborhood") {
+        eventValue.length < 3 ?
+          setClassNameIsValid({ ...classNameIsValid, neighborhood: false }) :
+          setClassNameIsValid({ ...classNameIsValid, neighborhood: true });
+      } else if (eventName === "birthYear") {
+        Number(eventValue) < 2000 || Number(eventValue) > 2022 ?
+          setClassNameIsValid({ ...classNameIsValid, birthYear: false }) :
+          setClassNameIsValid({ ...classNameIsValid, birthYear: true })
+      } else if (eventName === "type") {
+        eventValue === 'Dog' || eventValue === 'Cat' ?
+          setClassNameIsValid({ ...classNameIsValid, type: true }) :
+          setClassNameIsValid({ ...classNameIsValid, type: false })
+      } else if (eventName === "description") {
+        eventValue.length > 500 ?
+          setClassNameIsValid({ ...classNameIsValid, description: false }) :
+          setClassNameIsValid({ ...classNameIsValid, description: true })
+      }
     }
+
   }
 
   const onEditUserProfaileHandler = async (e) => {
@@ -91,9 +111,9 @@ function App() {
         if (img.value) {
           const URL_PATTERN = /^https?:\/\/(.+)/;
         }
-       
-          setUserInfo({ ...user, name: newUser.name, username: newUser.username, img: newUser.img})
-        
+
+        setUserInfo({ ...user, name: newUser.name, username: newUser.username, img: newUser.img })
+
       } catch (error) {
         setUserInfo({ ...user })
         throw new Error(error.message)

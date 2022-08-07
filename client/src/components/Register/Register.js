@@ -6,14 +6,13 @@ import * as api from '../../api/data'
 import { AuthContext } from '../../contexts/AuthContext';
 import { useContext } from 'react';
 
-
-// form onSubmit={onRegisterHandler}
 export const Register = (props) => {
 
     const navigate = useNavigate();
-    const {onRegister} = useContext(AuthContext)
 
-    const onRegisterHandler = async(e) => {
+    const { onRegister, classNameIsValid, validateFormData } = useContext(AuthContext)
+
+    const onRegisterHandler = async (e) => {
         e.preventDefault();
 
         const formData = new FormData(e.target);
@@ -34,29 +33,40 @@ export const Register = (props) => {
             return alert('Your password and repeat password do not match.');
         }
 
-        if(!username){
+        if (!username) {
             return alert('Your username do not match.');
 
         }
 
+        if (classNameIsValid.user.name && classNameIsValid.user.username && classNameIsValid.user.password) {
+            await api.register(name, username, password)
+
+            onRegister({ name, username })
+            navigate('/')
+        } else {
+            throw console.error('Pls, fill corect all fieleds in register form');
+        }
+
         e.target.reset();
 
-        await api.register(name, username, password)
-        
-        onRegister({name, username})
-        navigate('/')
     }
 
 
 
     return (
-        <section className="register-wrapper">
-            <section className="register">
+        <section className="register-wrapper" >
+            <section className="register" onBlur={(e) => validateFormData(e)}>
                 <h2 className="register-title">Register form</h2>
                 <form className="register-form" onSubmit={onRegisterHandler} >
                     <input type="text" name="name" id="name" className="register-input" placeholder="Ivan Ivanov" />
+                    <p className={classNameIsValid.user.name ? 'valid-inputs' : 'errors'}>The Name should be at least 3 characters</p>
+
                     <input type="username" id="username" name="username" className="register-input" placeholder="Username" />
+                    <p className={classNameIsValid.user.username ? 'valid-inputs' : 'errors'}>The Username should be at least 3 characters</p>
+
                     <input type="password" id="password" name="password" className="register-input" placeholder="Password" />
+                    <p className={classNameIsValid.user.password ? 'valid-inputs' : 'errors'}>Your password should be at least 4 characters</p>
+
                     <input type="password" id="repass" name="repass" className="register-input" placeholder="Confirm password" />
                     <input type="submit" className="register-submit" value="Register" />
                 </form>
