@@ -6,7 +6,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 
 
 export const AddPet = () => {
-    const { validateFormData, classNameIsValid } = useContext(AuthContext);
+    // const { validateFormData, classNameIsValid } = useContext(AuthContext);
 
     const [petName, setPetName] = useState('');
     const [petType, setPetType] = useState('');
@@ -16,6 +16,9 @@ export const AddPet = () => {
     const [petImg, setPetImg] = useState('');
     const [petLostData, setPetLostData] = useState('');
     const [petDescription, setPetDescription] = useState('');
+
+  const [classNameIsValid, setClassNameIsValid] = useState({ name: '', img: '', lostData: '', city: '', neighborhood: '', type: '', description: '', user: { name: '', username: '', password: '', repass: '' } });
+
 
     const navigate = useNavigate();
 
@@ -76,6 +79,67 @@ export const AddPet = () => {
             setPetDescription(e.target.value)
         }
     }
+
+    const validateFormData = (e) => {
+        const eventValue = e.target.value;
+        const eventName = e.target.name;
+        const parentElement = e.target.parentElement;
+    
+        if (parentElement.className === 'register-form' || parentElement.className === 'my-profaile') {
+          if (eventName === 'name') {
+            eventValue.length >= 3 ?
+              setClassNameIsValid({ ...classNameIsValid, user: { ...classNameIsValid.user, name: true } }) :
+              setClassNameIsValid({ ...classNameIsValid, user: { ...classNameIsValid.user, name: false } });
+    
+          } else if (eventName === 'username') {
+            eventValue.length >= 3 ?
+              setClassNameIsValid({ ...classNameIsValid, user: { ...classNameIsValid.user, username: true } }) :
+              setClassNameIsValid({ ...classNameIsValid, user: { ...classNameIsValid.user, username: false } });
+          } else if (eventName === 'password') {
+            eventValue.length >= 4 ?
+              setClassNameIsValid({ ...classNameIsValid, user: { ...classNameIsValid.user, password: true } }) :
+              setClassNameIsValid({ ...classNameIsValid, user: { ...classNameIsValid.user, password: false } });
+          }
+    
+        } else {
+          if (eventName === "name") {
+            eventValue.length < 2 ?
+              setClassNameIsValid({ ...classNameIsValid, name: false }) :
+              setClassNameIsValid({ ...classNameIsValid, name: true });
+          } else if (eventName === "img") {
+            const URL_PATTERN = /^https?:\/\/(.+)/;
+            URL_PATTERN.test(eventValue) ?
+              setClassNameIsValid({ ...classNameIsValid, img: true })
+              : setClassNameIsValid({ ...classNameIsValid, img: false });
+          } else if (eventName === "lostData") {
+            const LOST_DATA_PATTERN = /^[\d]{2}.[\d]{2}.[\d]{4}$/;
+            LOST_DATA_PATTERN.test(eventValue) ?
+              setClassNameIsValid({ ...classNameIsValid, lostData: true })
+              : setClassNameIsValid({ ...classNameIsValid, lostData: false })
+          } else if (eventName === "city") {
+            eventValue.length < 3 ?
+              setClassNameIsValid({ ...classNameIsValid, city: false }) :
+              setClassNameIsValid({ ...classNameIsValid, city: true });
+          } else if (eventName === "neighborhood") {
+            eventValue.length < 3 ?
+              setClassNameIsValid({ ...classNameIsValid, neighborhood: false }) :
+              setClassNameIsValid({ ...classNameIsValid, neighborhood: true });
+          } else if (eventName === "birthYear") {
+            Number(eventValue) < 2000 || Number(eventValue) > 2022 ?
+              setClassNameIsValid({ ...classNameIsValid, birthYear: false }) :
+              setClassNameIsValid({ ...classNameIsValid, birthYear: true })
+          } else if (eventName === "type") {
+            eventValue === 'Dog' || eventValue === 'Cat' ?
+              setClassNameIsValid({ ...classNameIsValid, type: true }) :
+              setClassNameIsValid({ ...classNameIsValid, type: false })
+          } else if (eventName === "description") {
+            eventValue.length > 500 ?
+              setClassNameIsValid({ ...classNameIsValid, description: false }) :
+              setClassNameIsValid({ ...classNameIsValid, description: true })
+          }
+        }
+    
+      }
 
     return (
         <section className="add">

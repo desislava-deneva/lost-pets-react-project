@@ -4,13 +4,17 @@ import { useNavigate } from 'react-router-dom';
 import * as api from '../../api/data'
 
 import { AuthContext } from '../../contexts/AuthContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
-export const Register = (props) => {
+export const Register = () => {
 
     const navigate = useNavigate();
 
-    const { onRegister, classNameIsValid, validateFormData } = useContext(AuthContext)
+    const { onRegister } = useContext(AuthContext)
+    const [classNameIsValid, setClassNameIsValid] =
+        useState(
+            { user: { name: '', username: '', password: '', repass: '' } }
+        );
 
     const onRegisterHandler = async (e) => {
         e.preventDefault();
@@ -51,7 +55,29 @@ export const Register = (props) => {
 
     }
 
+    const validateFormData = (e) => {
+        const eventValue = e.target.value;
+        const eventName = e.target.name;
+        const parentElement = e.target.parentElement;
 
+        if (parentElement.className === 'register-form' || parentElement.className === 'my-profaile') {
+            if (eventName === 'name') {
+                eventValue.length >= 3 ?
+                    setClassNameIsValid({ user: { ...classNameIsValid.user, name: true } }) :
+                    setClassNameIsValid({ user: { ...classNameIsValid.user, name: false } });
+
+            } else if (eventName === 'username') {
+                eventValue.length >= 3 ?
+                    setClassNameIsValid({ user: { ...classNameIsValid.user, username: true } }) :
+                    setClassNameIsValid({ user: { ...classNameIsValid.user, username: false } });
+            } else if (eventName === 'password') {
+                eventValue.length >= 4 ?
+                    setClassNameIsValid({ user: { ...classNameIsValid.user, password: true } }) :
+                    setClassNameIsValid({ user: { ...classNameIsValid.user, password: false } });
+            }
+        }
+
+    }
 
     return (
         <section className="register-wrapper" >

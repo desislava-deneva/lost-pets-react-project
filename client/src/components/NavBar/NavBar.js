@@ -4,7 +4,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 import { useContext } from 'react';
 
 export const NavBar = () => {
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
     let userNav = (
         <ul className="nav" fixed="top">
             <li className="active"><Link to="/">Home</Link></li>
