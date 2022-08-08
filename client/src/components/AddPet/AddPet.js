@@ -1,16 +1,19 @@
 import './AddPet.css';
 import { createRecord } from '../../api/data';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { PetContexts } from '../../contexts/PetContexts';
 
 export const AddPet = () => {
     const [pet, setPet] = useState({ name: '', img: '', dataLost: '', city: '', neighborhood: '', type: '', description: '' });
     const [validationForm, setValidationForm] = useState({ name: '', img: '', dataLost: '', city: '', neighborhood: '', type: '', description: '' });
-
+    const { AddPet } = useContext(PetContexts);
     const navigate = useNavigate();
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
+
+        const petData = Object.fromEntries(new FormData(e.target));
 
         if (
             validationForm.name &&
@@ -22,9 +25,9 @@ export const AddPet = () => {
             validationForm.type &&
             validationForm.description
         ) {
-            createRecord(pet)
+            createRecord(petData)
                 .then(result => {
-                    console.log(result)
+                    AddPet(result)
                 })
 
             navigate('/')

@@ -12,17 +12,17 @@ import { EditPage } from './components/EditPage/EditPage';
 import { Logout } from './components/Logout/Logout';
 import { MyProfaile } from './components/MyProfaile/MyProfaile';
 import { AuthProvider } from './contexts/AuthContext'
-import { PetProvider } from './contexts/PetContext'
+import { PetProviders } from './contexts/PetContexts'
 
 
 function App() {
-  
+
 
   return (
     <AuthProvider>
       <BrowserRouter>
         <div className="App">
-          <PetProvider>
+          <PetProviders>
             <NavBar />
             <Routes>
               <Route path="/" element={<Home />} />
@@ -35,7 +35,7 @@ function App() {
               <Route path='/logout' element={<Logout />} />
               <Route path='/my-profail' element={<MyProfaile />} />
             </Routes>
-          </PetProvider>
+          </PetProviders>
 
         </div>
       </BrowserRouter>

@@ -1,11 +1,11 @@
 import './Catalog.css'
 import { Pet } from '../Pet/Pet'
 import { useContext } from 'react';
-import { PetContext } from '../../contexts/PetContext';
+import { PetContexts } from '../../contexts/PetContexts';
 
 export const Catalog = () => {
-    const { pets, onSelectSort} = useContext(PetContext);
-   
+    const { pets, onSelectSort} = useContext(PetContexts);
+
     return (
 
         <div className="calalog" >
