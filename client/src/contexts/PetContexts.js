@@ -16,6 +16,13 @@ export const PetProviders = ({
                 return [...action.payload]
             case 'ADD_PET':
                 return [...state, action.payload]
+            case 'PET_DETAILS':
+            case 'EDIT_PET':
+                return state.map(x => x._id === action.petId ? action.payload : x);
+            // case 'ADD_COMMENT':
+            //     return state.map(x => x._id === action.petId ? { ...x, comments: [...x.comments, action.payload] } : x);
+            case 'REMOVE_PET':
+                return state.filter(x => x._id !== action.petId);
             default:
                 return state;
         }
@@ -38,7 +45,6 @@ export const PetProviders = ({
             type: 'ADD_PET',
             payload: dataPet
         })
-
         navigate('/catalog')
     }
 
@@ -57,10 +63,17 @@ export const PetProviders = ({
         }
     }
 
+    const petDetails = (petId, petDetails) => {
+        dispatcher({
+            type: 'PET_DETAILS',
+            payload: petDetails,
+            petId,
+        })
+    }
+
     return (
         <PetContexts.Provider value={{ pets, addPet, onSelectSort }}>
             {children}
         </PetContexts.Provider>
-
     )
 }

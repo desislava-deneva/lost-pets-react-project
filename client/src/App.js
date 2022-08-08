@@ -7,12 +7,12 @@ import { Catalog } from './components/Catalog/Catalog';
 import { AddPet } from './components/AddPet/AddPet';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Details } from './components/Details/Details'
-import { useState } from 'react';
 import { EditPage } from './components/EditPage/EditPage';
 import { Logout } from './components/Logout/Logout';
 import { MyProfaile } from './components/MyProfaile/MyProfaile';
 import { AuthProvider } from './contexts/AuthContext'
 import { PetProviders } from './contexts/PetContexts'
+import { ValidationProviders } from './contexts/validationContext';
 
 
 function App() {
@@ -23,18 +23,20 @@ function App() {
       <BrowserRouter>
         <div className="App">
           <PetProviders>
-            <NavBar />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/create" element={<AddPet />} />
-              <Route path="/catalog" element={<Catalog />} />
-              <Route path='/details/:id' element={<Details />} />
-              <Route path='/edit/:id' element={<EditPage edit={{ edit: "Edit", textBtn: "Edit" }} />} />
-              <Route path='/logout' element={<Logout />} />
-              <Route path='/my-profail' element={<MyProfaile />} />
-            </Routes>
+            < ValidationProviders>
+              <NavBar />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/create" element={<AddPet />} />
+                <Route path="/catalog" element={<Catalog />} />
+                <Route path='/details/:id' element={<Details />} />
+                <Route path='/edit/:id' element={<EditPage edit={{ edit: "Edit", textBtn: "Edit" }} />} />
+                <Route path='/logout' element={<Logout />} />
+                <Route path='/my-profail' element={<MyProfaile />} />
+              </Routes>
+            </ValidationProviders>
           </PetProviders>
 
         </div>

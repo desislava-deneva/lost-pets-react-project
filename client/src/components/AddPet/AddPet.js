@@ -1,104 +1,29 @@
 import './AddPet.css';
 import { createRecord } from '../../api/data';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PetContexts } from '../../contexts/PetContexts';
+import { ValidationContexts } from '../../contexts/validationContext';
 
 export const AddPet = () => {
-    const [pet, setPet] = useState({ name: '', img: '', dataLost: '', city: '', neighborhood: '', type: '', description: '' });
-    const [validationForm, setValidationForm] = useState({ name: '', img: '', dataLost: '', city: '', neighborhood: '', type: '', description: '' });
     const { AddPet } = useContext(PetContexts);
+    const { validateFormData, validationForm, pet, onChangeHandler } = useContext(ValidationContexts);
+
     const navigate = useNavigate();
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
 
         const petData = Object.fromEntries(new FormData(e.target));
-
-        if (
-            validationForm.name &&
-            validationForm.img &&
-            validationForm.dataLost &&
-            validationForm.city &&
-            validationForm.neighborhood &&
-            validationForm.birthYear &&
-            validationForm.type &&
-            validationForm.description
-        ) {
+        if (Object.values(validationForm).some(x => x === false)) {
+            alert('Fill correct all fields')
+        } else {
             createRecord(petData)
                 .then(result => {
                     AddPet(result)
                 })
 
             navigate('/')
-        } else {
-            alert('Fill correct all fields')
-        }
-    }
-
-    const onChangeHandler = (e) => {
-        if (e.target.name === "name") {
-            setPet({ ...pet, name: e.target.value })
-        } else if (e.target.name === "img") {
-            setPet({ ...pet, img: e.target.value })
-        } else if (e.target.name === "dataLost") {
-            setPet({ ...pet, dataLost: e.target.value })
-        } else if (e.target.name === "city") {
-            setPet({ ...pet, city: e.target.value })
-        } else if (e.target.name === "neighborhood") {
-            setPet({ ...pet, neighborhood: e.target.value })
-        } else if (e.target.name === "birthYear") {
-            setPet({ ...pet, birthYear: e.target.value })
-        } else if (e.target.name === "type") {
-            setPet({ ...pet, type: e.target.value })
-        } else if (e.target.name === "description") {
-            if (e.target.value.length > 500) {
-                alert('Description must be <= 500 charecters');
-                throw console.error('Description must be <= 500 charecters');
-            }
-            setPet({ ...pet, description: e.target.value })
-        }
-    }
-
-    const validateFormData = (e) => {
-        const eventValue = e.target.value;
-        const eventName = e.target.name;
-
-        if (eventName === "name") {
-            eventValue.length < 2 ?
-                setValidationForm({ ...validationForm, name: false }) :
-                setValidationForm({ ...validationForm, name: true });
-        } else if (eventName === "img") {
-            const URL_PATTERN = /^https?:\/\/(.+)/;
-            URL_PATTERN.test(eventValue) ?
-                setValidationForm({ ...validationForm, img: true })
-                : setValidationForm({ ...validationForm, img: false });
-        } else if (eventName === "dataLost") {
-            const LOST_DATA_PATTERN = /^[\d]{2}.[\d]{2}.[\d]{4}$/;
-            console.log(validationForm)
-            LOST_DATA_PATTERN.test(eventValue) ?
-                setValidationForm({ ...validationForm, dataLost: true })
-                : setValidationForm({ ...validationForm, dataLost: false })
-        } else if (eventName === "city") {
-            eventValue.length < 3 ?
-                setValidationForm({ ...validationForm, city: false }) :
-                setValidationForm({ ...validationForm, city: true });
-        } else if (eventName === "neighborhood") {
-            eventValue.length < 3 ?
-                setValidationForm({ ...validationForm, neighborhood: false }) :
-                setValidationForm({ ...validationForm, neighborhood: true });
-        } else if (eventName === "birthYear") {
-            Number(eventValue) < 2000 || Number(eventValue) > 2022 ?
-                setValidationForm({ ...validationForm, birthYear: false }) :
-                setValidationForm({ ...validationForm, birthYear: true })
-        } else if (eventName === "type") {
-            eventValue === 'Dog' || eventValue === 'Cat' ?
-                setValidationForm({ ...validationForm, type: true }) :
-                setValidationForm({ ...validationForm, type: false })
-        } else if (eventName === "description") {
-            eventValue.length > 500 ?
-                setValidationForm({ ...validationForm, description: false }) :
-                setValidationForm({ ...validationForm, description: true })
         }
     }
 
