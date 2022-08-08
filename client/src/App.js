@@ -16,11 +16,7 @@ import { PetProvider } from './contexts/PetContext'
 
 
 function App() {
-  const [buttonComment, setButtonComment] = useState(false);
-
-  const setButtonCommentHandler = (e) => {
-    setButtonComment(true);
-  }
+  
 
   return (
     <AuthProvider>
