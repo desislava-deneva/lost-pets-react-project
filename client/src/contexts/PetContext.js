@@ -8,7 +8,6 @@ export const PetProvider = ({
 ) => {
   const [pets, setPets] = useState([]);
   const [validationForm, setValidationForm] = useState({ name: '', img: '', dataLost: '', city: '', neighborhood: '', type: '', description: '' });
-  const [sortedPets, setSortedPets] = useState([]);
 
   useEffect(() => {
     api.getPets()
@@ -21,20 +20,12 @@ export const PetProvider = ({
   const onSelectSort = (e) => {
     const dropValue = e.target.value;
     if (dropValue === 'name') {
-      setPets(pets.sort((a, b) => a.name.localeCompare(b.name)))
+      setPets(Object.values(pets).sort((a, b) => a.name.localeCompare(b.name)))
+      console.log('name' + Object.values(pets));
+
     } else if (dropValue === 'city') {
-      setPets(pets.sort((a, b) => a.city.localeCompare(b.city)))
-    } else {
-      setPets(pets)
+      setPets(Object.values(pets).sort((a, b) => a.city.localeCompare(b.city)))
     }
-  }
-
-  const homeLastAddPetsHandler = (e) => {
-    setSortedPets(pets)
-    sortedPets.reverse()
-    sortedPets.length = 4;
-
-    console.log(sortedPets)
   }
 
   const validateFormData = (e) => {
@@ -84,8 +75,6 @@ export const PetProvider = ({
       validateFormData,
       validationForm,
       onSelectSort,
-      homeLastAddPetsHandler,
-      sortedPets
     }}>
       {children}
     </PetContext.Provider>
