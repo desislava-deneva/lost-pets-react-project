@@ -50,7 +50,14 @@ async function login(username, password) {
 }
 
 function logout(token) {
-    blacklist.add(token);
+    const payload = {
+        name: '',
+        username: '',
+        _id: '',
+        img: '',
+        token
+    };
+    blacklist.add(payload);
 }
 
 function createSession(user) {

@@ -26,6 +26,7 @@ export const AuthProvider = (props) => {
     const onEditUserProfaileHandler = async (e) => {
         if (!isEdit) {
             setIsEdit(true);
+            
         } else {
             const { img, name, username } = document.getElementsByTagName('input');
 

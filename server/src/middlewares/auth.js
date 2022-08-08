@@ -15,7 +15,6 @@ module.exports = () => (req, res, next) => {
                 token
             };
 
-            console.log('auth token' + req.user)
         } catch (err) {
             console.error(err);
             return res.status(401).json({ message: 'Invalid access token. Please log in'});

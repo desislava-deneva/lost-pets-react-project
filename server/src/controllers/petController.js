@@ -108,19 +108,26 @@ router.post('/:id/unlike', preload(api), isAuth(), async (req, res) => {
     }
 })
 
-router.get('/:id/comments', preload(api), async (req, res) => {
+router.get('/comment/:id', preload(api), async (req, res) => {
     res.json(res.locals.item.comments);
-    console.log('in get /details/:id')
+    console.log('in get /comment/:id')
 })
 
-router.post('/:id/comments', async (req, res) => {
+router.post('/comment/:id', preload(api), async (req, res) => {
+    console.log('in post /comment/:id')
+
     const id = req.params.id;
+    console.log(id)
+    console.log(req.body);
 
-    try{
+    try {
         const item = await api.comments(id, req.body.comment);
-        res.json(item)
+        console.log(item)
+        if (item) {
+            res.status(200).json(item)
+        }
 
-    }catch(err){
+    } catch (err) {
         console.error(err);
         res.status(404).json({ message: err });
     }

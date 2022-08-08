@@ -18,10 +18,9 @@ async function start() {
     }
 
     const app = express();
-
+    app.use(cors());
     app.use(express.urlencoded({ extended: true }));
     app.use(express.json());
-    app.use(cors());
     app.use(auth());
 
     app.use('/data/catalog', petController);
@@ -29,6 +28,5 @@ async function start() {
 
     app.listen(3030, () => console.log('REST Service started on port 3030'));
 }
-
 
 start();

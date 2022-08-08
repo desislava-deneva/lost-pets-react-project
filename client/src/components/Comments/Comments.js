@@ -1,63 +1,42 @@
 import './Comments.css';
-import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
-import CommentsBlock from 'simple-react-comments';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import * as api from '../../api/data';
 
-export const Comments = () => {
+export const Comments = (props) => {
+    const [pet, setPet] = useState('');
     const [comment, setComment] = useState('');
-    const { setButtonComment, setButtonCommentHandler, buttonComment } = useContext(AuthContext);
+    const params = useParams();
+    const id = params.id;
 
-    const onSubmitHandler = (e) => {
-        const divElement = e.target.parentElement;
-        const textareaElement = divElement.querySelector('textarea');
-        setComment(textareaElement.value);
-        setButtonComment(true)
-        setComment('')
+    useEffect(() => {
+        api.getPetById(id)
+            .then(result => {
+                setPet(result)
+            })
+    }, []);
+
+    const addCommentHandler = async (e) => {
+       await api.postCommentById(pet._id, comment);
     }
+
+    const changeHandler = (e) => {
+        setComment(state => ({ ...state, [e.target.name]: e.target.value }));
+    }
+
     return (
-        <div className="comments">
+        <div className="comments" >
             <h2>Comments:</h2>
             <ul>
-                <li>Comment 1 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industryLorem Ipsum is simply </li>
-                <li>Comment 2</li>
-                <li>Comment 3</li>
-                <li>Comment 4</li>
-                {comment && buttonComment ? <li>{comment}</li> : ''}
+                {pet.comments ? pet.comments.map(x => <li>{x}</li>) : ''}
                 <label className='label-comments'>Add new comment:</label>
-                <form>
-                    <textarea className="comment-input" name="comment" id="comment" cols="30" rows="10"></textarea>
+                <form >
+                    <textarea onChange={changeHandler} className="comment-input" name="comment" id="comment" cols="30" rows="10"></textarea>
                 </form>
-                <button className='comment-button' onClick={onSubmitHandler}>Comment</button>
+                <button className='comment-button' onClick={addCommentHandler}>Comment</button>
             </ul>
         </div>
     )
 }
 
 
-{/* <article className="create-comment">
-    <label>Add new comment:</label>
-    <form className="form" onSubmit={addCommentHandler}>
-        <textarea
-            name="comment"
-            placeholder="Comment......"
-        />
-
-        <input
-            className="btn submit"
-            type="submit"
-            value="Add Comment"
-        />
-    </form>
-</article> */}
-
-// const addCommentHandler = (e) => {
-//     e.preventDefault();
-//     const formData = new FormData(e.target);
-
-//     const comment = formData.get('comment');
-
-//     commentService.create(gameId, comment)
-//         .then(result => {
-//             addComment(gameId, comment);
-//         });
-// };

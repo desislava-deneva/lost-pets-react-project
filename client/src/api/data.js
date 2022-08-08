@@ -30,14 +30,12 @@ export async function postLikeById(id) {
 }
 
 export async function getCommentsById(id) {
-    return await api.get(host + '/data/catalog/' + id + '/comments');
+    return await api.get(host + '/data/catalog/' + id );
 }
 
 export async function postCommentById(id, comment) {
-    return await api.get(host + '/data/catalog/' + id + '/comments', comment);
+    return await api.post(host + '/data/catalog/comment/' + id, comment );
 }
-
-
 
 export async function createRecord(data) {
     return await api.post(host + '/data/catalog', data);

@@ -88,17 +88,14 @@ async function deleteById(id) {
 }
 
 async function comments(id, data) {
-    const comment = new Comment({
-        text: data,
-        post: id
-    })
-    await comment.save();
 
-    const postRelated = await Item.findById(id);
-    postRelated.comments.push(comment);
-    await postRelated.save();
+    const item = await Item.findById(id);
+    console.log('COMMENTS  ' + data)
 
-    return postRelated;
+    item.comments.push(data);
+    await item.save();
+    console.log('COMMENTS  ' + item)
+    return item;
 }
 
 module.exports = {
