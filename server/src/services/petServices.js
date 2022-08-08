@@ -83,8 +83,8 @@ async function unlike(userId, id) {
 }
 
 async function deleteById(id) {
-    const item = Item.findByIdAndDelete(id);
-    return await Item.findByIdAndDelete(id);
+    const item = await Item.findByIdAndDelete(id);
+    return Item.find({});
 }
 
 async function comments(id, data) {

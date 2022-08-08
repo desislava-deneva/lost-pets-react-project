@@ -10,7 +10,7 @@ export const NavBar = () => {
         <ul className="nav" fixed="top">
             <li className="active"><Link to="/">Home</Link></li>
             <li><Link to="/catalog" className="button" >Catalog of lost pets</Link></li>
-            <li> <Link className="button" to="/my-profail">My Profail</Link></li>
+            <li> <Link className="button" to="/my-profail">My Profile</Link></li>
             <li> <Link className="button" to="/create">Add Pets</Link></li>
             <li> <Link className="button logout-end" to="/logout">Logout</Link></li>
         </ul>

@@ -1,14 +1,16 @@
 import './Details.css'
 import { EditDeleteButtons } from '../EditDeleteButtons/EditDeleteButtons'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Likes } from '../Likes/Likes';
 import { useParams } from 'react-router-dom';
 import { GoogleMap } from '../GoogleMap/GoogleMap';
 import { Comments } from '../Comments/Comments'
 import * as api from '../../api/data';
-
+import { PetContext } from '../../contexts/PetContext';
 export const Details = (props) => {
+
     const [pet, setPet] = useState({});
+    const { pets } = useContext(PetContext);
 
     const userId = sessionStorage.userId;
     const params = useParams();

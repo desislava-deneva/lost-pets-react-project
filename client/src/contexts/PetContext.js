@@ -1,5 +1,8 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
+import { Navigate, useParams } from "react-router-dom";
 import * as api from '../api/data';
+import { AuthContext } from '../contexts/AuthContext';
+
 export const PetContext = createContext();
 
 export const PetProvider = ({
@@ -8,6 +11,8 @@ export const PetProvider = ({
 ) => {
   const [pets, setPets] = useState([]);
   const [validationForm, setValidationForm] = useState({ name: '', img: '', dataLost: '', city: '', neighborhood: '', type: '', description: '' });
+  const { user } = useContext(AuthContext);
+  const params = useParams();
 
   useEffect(() => {
     api.getPets()
@@ -21,11 +26,17 @@ export const PetProvider = ({
     const dropValue = e.target.value;
     if (dropValue === 'name') {
       setPets(Object.values(pets).sort((a, b) => a.name.localeCompare(b.name)))
-      console.log('name' + Object.values(pets));
-
     } else if (dropValue === 'city') {
       setPets(Object.values(pets).sort((a, b) => a.city.localeCompare(b.city)))
     }
+  }
+
+  const MyPetsHandler = () => {
+    api.getPets()
+      .then(result => {
+        result.filter((x) => x.owner === user._id);
+        setPets(result)
+      });
   }
 
   const validateFormData = (e) => {
@@ -69,12 +80,27 @@ export const PetProvider = ({
     }
   }
 
+
+  const deleteHandler = () => {
+    const id = params.id;
+
+    api.deleteRecord(id)
+      .then((result) => {
+        setPets(result);
+        Navigate('/catalog')
+      })
+      .catch(err => console.error(err));
+    return null;
+  }
+
   return (
     <PetContext.Provider value={{
       pets,
       validateFormData,
       validationForm,
       onSelectSort,
+      MyPetsHandler,
+      deleteHandler
     }}>
       {children}
     </PetContext.Provider>
