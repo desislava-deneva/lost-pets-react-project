@@ -71,14 +71,6 @@ export const PetProviders = ({
         })
     }
 
-    // const fetchGameDetails = (gameId, gameDetails) => {
-    //     dispatch({
-    //         type: 'FETCH_GAME_DETAILS',
-    //         payload: gameDetails,
-    //         gameId,
-    //     })
-    // }
-
     const petEdit = (_id, petData) => {
         dispatcher({
             type: 'EDIT_PET',
