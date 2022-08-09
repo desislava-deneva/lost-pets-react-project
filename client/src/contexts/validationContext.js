@@ -2,13 +2,10 @@ import { createContext, useState } from "react";
 
 export const ValidationContexts = createContext();
 
-
 export const ValidationProviders = ({
     children
 }) => {
     const [validationForm, setValidationForm] = useState({ name: '', img: '', dataLost: '', city: '', neighborhood: '', type: '', description: '' });
-    const [pet, setPet] = useState({ name: '', img: '', dataLost: '', city: '', neighborhood: '', type: '', description: '' });
-
 
     const validateFormData = (e) => {
         const eventValue = e.target.value;
@@ -51,32 +48,8 @@ export const ValidationProviders = ({
         }
     }
 
-    const onChangeHandler = (e) => {
-        if (e.target.name === "name") {
-            setPet({ ...pet, name: e.target.value })
-        } else if (e.target.name === "img") {
-            setPet({ ...pet, img: e.target.value })
-        } else if (e.target.name === "dataLost") {
-            setPet({ ...pet, dataLost: e.target.value })
-        } else if (e.target.name === "city") {
-            setPet({ ...pet, city: e.target.value })
-        } else if (e.target.name === "neighborhood") {
-            setPet({ ...pet, neighborhood: e.target.value })
-        } else if (e.target.name === "birthYear") {
-            setPet({ ...pet, birthYear: e.target.value })
-        } else if (e.target.name === "type") {
-            setPet({ ...pet, type: e.target.value })
-        } else if (e.target.name === "description") {
-            if (e.target.value.length > 500) {
-                alert('Description must be <= 500 charecters');
-                throw console.error('Description must be <= 500 charecters');
-            }
-            setPet({ ...pet, description: e.target.value })
-        }
-    }
-
     return (
-        <ValidationContexts.Provider value={{ validateFormData, validationForm, onChangeHandler, pet }} >
+        <ValidationContexts.Provider value={{ validateFormData, validationForm, }} >
             {children}
         </ValidationContexts.Provider >
     )
