@@ -1,5 +1,5 @@
 import './Comments.css';
-import { useEffect, useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { PetContexts } from '../../contexts/PetContexts';
 
@@ -8,8 +8,6 @@ export const Comments = ({
     comments
 }) => {
     const { getPet, addComment } = useContext(PetContexts)
-    console.log(comments.comments)
-
     const [comment, setComment] = useState('');
 
     const params = useParams();
@@ -25,6 +23,7 @@ export const Comments = ({
         const textareaEl = parent.querySelector('textarea');
         textareaEl.value = '';
     }
+    const isAuth = sessionStorage.length
 
     const changeHandler = (e) => {
         setComment(state => ({ ...state, [e.target.name]: e.target.value }));
@@ -34,12 +33,21 @@ export const Comments = ({
         <div className="comments" >
             <h2>Comments:</h2>
             <ul>
-                {pet.comments ? pet.comments.map(x => <li>{x}</li>) : ''}
-                <label className='label-comments'>Add new comment:</label>
-                <form >
-                    <textarea onChange={changeHandler} className="comment-input" name="comment" id="comment" cols="30" rows="10"></textarea>
-                </form>
-                <button className='comment-button' onClick={addCommentHandler}>Comment</button>
+                {pet?.comments ? pet.comments.map(x => <li>{x}</li>) : ''}
+                {isAuth.length > 0 ?
+                    <>
+                        <label className='label-comments'>Add new comment:</label>
+
+                        <form >
+                            <textarea onChange={changeHandler} className="comment-input" name="comment" id="comment" cols="30" rows="10"></textarea>
+                        </form>
+                    </>
+                    : null}
+
+                {isAuth.length > 0 ?
+                    <button className='comment-button' onClick={addCommentHandler}>Comment</button>
+                    : null}
+
             </ul>
         </div>
     )

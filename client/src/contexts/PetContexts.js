@@ -48,7 +48,6 @@ export const PetProviders = ({
             type: 'ADD_PET',
             payload: dataPet
         })
-        navigate('/catalog')
     }
 
     const onSelectSort = (e) => {

@@ -6,7 +6,7 @@ import { PetContexts } from '../../contexts/PetContexts';
 import { ValidationContexts } from '../../contexts/validationContext';
 
 export const AddPet = () => {
-    const { AddPet } = useContext(PetContexts);
+    const { addPet } = useContext(PetContexts);
     const { validateFormData, validationForm } = useContext(ValidationContexts);
 
     const navigate = useNavigate();
@@ -20,10 +20,10 @@ export const AddPet = () => {
         } else {
             createRecord(petData)
                 .then(result => {
-                    AddPet(result)
+                    addPet(result)
                 })
                 
-            navigate('/')
+            navigate('/catalog')
         }
     }
 
