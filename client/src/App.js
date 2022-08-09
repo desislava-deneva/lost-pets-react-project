@@ -32,7 +32,7 @@ function App() {
                 <Route path="/create" element={<AddPet />} />
                 <Route path="/catalog" element={<Catalog />} />
                 <Route path='/details/:id' element={<Details />} />
-                <Route path='/edit/:id' element={<EditPage edit={{ edit: "Edit", textBtn: "Edit" }} />} />
+                <Route path='/edit/:id' element={<EditPage />} />
                 <Route path='/logout' element={<Logout />} />
                 <Route path='/my-profail' element={<MyProfaile />} />
               </Routes>
