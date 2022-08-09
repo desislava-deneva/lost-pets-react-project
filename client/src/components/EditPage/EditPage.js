@@ -3,11 +3,14 @@ import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import * as api from '../../api/data'
 import { ValidationContexts } from '../../contexts/validationContext';
+import { PetContexts } from '../../contexts/PetContexts';
+
 
 export const EditPage = () => {
     const { validateFormData, validationForm } = useContext(ValidationContexts);
+    const { petEdit } = useContext(PetContexts)
     const [pet, setPet] = useState({});
-    
+
     const params = useParams();
     const id = params.id;
     const navigate = useNavigate();
@@ -18,7 +21,7 @@ export const EditPage = () => {
                 setPet(result)
             })
     }, [])
-   
+
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         const petData = Object.fromEntries(new FormData(e.target));
@@ -27,6 +30,7 @@ export const EditPage = () => {
             alert('Fill correct all fields')
         } else {
             await api.editRecord(id, petData);
+            petEdit(id, petData)
             navigate('/details/' + id)
         }
     }

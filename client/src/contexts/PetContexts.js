@@ -17,12 +17,12 @@ export const PetProviders = ({
             case 'ADD_PET':
                 return [...state, action.payload]
             case 'PET_DETAILS':
-            case 'EDIT_PET':
-                return state.map(x => x._id === action._id ? action.payload : x);
+                case 'EDIT_PET':
+                   return state.map(x => x._id === action._id ? action.payload : x);
             // case 'ADD_COMMENT':
             //     return state.map(x => x._id === action.petId ? { ...x, comments: [...x.comments, action.payload] } : x);
-            case 'REMOVE_PET':
-                return state.filter(x => x._id !== action._id);
+                 case 'REMOVE_PET':
+                    return state.filter(x => x._id !== action._id);
             default:
                 return state;
         }
@@ -71,6 +71,14 @@ export const PetProviders = ({
         })
     }
 
+    // const fetchGameDetails = (gameId, gameDetails) => {
+    //     dispatch({
+    //         type: 'FETCH_GAME_DETAILS',
+    //         payload: gameDetails,
+    //         gameId,
+    //     })
+    // }
+
     const petEdit = (_id, petData) => {
         dispatcher({
             type: 'EDIT_PET',
@@ -80,7 +88,7 @@ export const PetProviders = ({
     };
 
     return (
-        <PetContexts.Provider value={{ pets, addPet, onSelectSort, petEdit }}>
+        <PetContexts.Provider value={{ pets, addPet, onSelectSort, petEdit, petDetails }}>
             {children}
         </PetContexts.Provider>
     )
