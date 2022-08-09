@@ -2,7 +2,7 @@ import './Details.css'
 import { EditDeleteButtons } from '../EditDeleteButtons/EditDeleteButtons'
 import { useState, useEffect, useContext } from 'react';
 import { Likes } from '../Likes/Likes';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { GoogleMap } from '../GoogleMap/GoogleMap';
 import { Comments } from '../Comments/Comments'
 import * as api from '../../api/data';
@@ -10,12 +10,12 @@ import { PetContexts } from '../../contexts/PetContexts';
 export const Details = (props) => {
 
     const [pet, setPet] = useState({});
-    const { pets } = useContext(PetContexts);
-
+    const { pets, delPet } = useContext(PetContexts);
+    const navigate = useNavigate()
     const userId = sessionStorage.userId;
     const params = useParams();
     const id = params.id;
-    
+
     useEffect(() => {
         api.getPetById(id)
             .then(result => {
@@ -28,6 +28,15 @@ export const Details = (props) => {
 
     const isFoundedHandler = (e) => {
         setIsFounded(isFounded => isFounded = true);
+    }
+
+    const deleteHandler = () => {
+        api.deleteRecord(id)
+            .then(() => {
+                delPet(id)
+            })
+            .catch(err => console.error(err));
+        return null;
     }
 
     return (
@@ -48,12 +57,12 @@ export const Details = (props) => {
 
                     {userId !== undefined && pet.owner === userId ?
                         <div>
-                            <EditDeleteButtons pet={pet} />
+                            <EditDeleteButtons pet={{pet, deleteHandler}} />
                         </div>
                         : ""
                     }
                 </div>
-                <Comments />
+                <Comments comments={pet.comments} />
             </div>
             <GoogleMap />
         </article>
