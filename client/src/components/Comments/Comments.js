@@ -33,7 +33,7 @@ export const Comments = ({
         <div className="comments" >
             <h2>Comments:</h2>
             <ul>
-                {pet?.comments ? pet.comments.map(x => <li>{x}</li>) : ''}
+                {pet?.comments.length > 0 ? pet.comments.map(x => <li>{x}</li>) : <h4>No comments yet...</h4>}
                 {isAuth.length > 0 ?
                     <>
                         <label className='label-comments'>Add new comment:</label>
