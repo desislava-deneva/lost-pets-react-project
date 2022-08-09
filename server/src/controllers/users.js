@@ -40,7 +40,9 @@ router.get('/my-profail/:id', isAuth(), async (req, res) => {
 });
 
 router.get('/user-info/:id', async (req, res) => {
-    res.json(req.user);
+    const user = await User.findOne({ username: new RegExp(`^${req.username}$`, 'i') });
+    res.json(user);
+    console.log(user);
 })
 
 router.put('/user-info/:id', async (req, res) => {

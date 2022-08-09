@@ -132,12 +132,16 @@ async function updateUserInfo(id, newUser) {
 
 }
 
-
+async function getUserByUsername(username, req) {
+    const user = await User.findOne({ username: new RegExp(`^${username}$`, 'i') });
+    return user;
+}
 
 module.exports = {
     register,
     login,
     logout,
     validateToken,
-    updateUserInfo
+    updateUserInfo,
+    getUserByUsername
 };

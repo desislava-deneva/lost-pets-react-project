@@ -65,3 +65,11 @@ export async function updateUserProfaile(user) {
 
     return result;
 }
+
+export async function getUser(user) {
+    const result = await api.put(host + '/users/user-info/' + user.id);
+    sessionStorage.setItem('username', result.username);
+    sessionStorage.setItem('name', result.name);
+
+    return result;
+}

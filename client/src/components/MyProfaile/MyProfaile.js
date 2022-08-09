@@ -26,8 +26,11 @@ export const MyProfaile = () => {
             const { img, name, username } = document.getElementsByTagName('input');
             setIsEdit(false);
             try {
-                const newUser = await api.updateUserProfaile({ authToken: user.authToken, _id: user._id, name: name.value, username: username.value, img: img.value });
-                onEditProfaile(newUser);
+                api.updateUserProfaile({ authToken: user.authToken, _id: user._id, name: name.value, username: username.value, img: img.value })
+                    .then(res => {
+                        onEditProfaile(res);
+                    })
+
                 if (img.value) {
                     const URL_PATTERN = /^https?:\/\/(.+)/;
                 }
