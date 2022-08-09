@@ -22,10 +22,12 @@ export const AuthProvider = (props) => {
         setUserInfo({ username: data.username, authToken: token, _id: userId, name: data.name, img: "" })
     }
 
-    const onEditProfaile = (data)=>{
-        setUserInfo({ username: data.username, authToken: data.token, _id: data._id, name: data.name, img: data.img })
+    const onEditProfaile = (data) => {
+        setUserInfo({ username: data.username, authToken: data.token, _id: data._id, name: data.name, img: data.img });
+        console.log(user);
+        return user;
     }
-    
+
     return (
         <AuthContext.Provider value={{ user, onLogin, onLogout, onRegister, onEditProfaile }}>
             {props.children}

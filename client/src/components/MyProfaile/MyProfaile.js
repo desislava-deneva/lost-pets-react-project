@@ -1,7 +1,7 @@
 import './MyProfaile.css'
 import { Pet } from '../Pet/Pet'
 import { AuthContext } from '../../contexts/AuthContext';
-import { PetContext } from '../../contexts/PetContext';
+import { PetContexts } from '../../contexts/PetContexts';
 import { useContext, useEffect, useState } from 'react';
 import profailePicture from './unisex-image.jpeg';
 import * as api from '../../api/data';
@@ -9,9 +9,8 @@ import * as api from '../../api/data';
 export const MyProfaile = () => {
 
     const { user, onEditProfaile } = useContext(AuthContext);
-    const { pets, MyPetsHandler } = useContext(PetContext);
+    const { pets, } = useContext(PetContexts);
     const [isEdit, setIsEdit] = useState(false);
-
 
     const [myPets, setMyPets] = useState([]);
     useEffect(() => {
@@ -28,10 +27,11 @@ export const MyProfaile = () => {
             setIsEdit(false);
             try {
                 const newUser = await api.updateUserProfaile({ authToken: user.authToken, _id: user._id, name: name.value, username: username.value, img: img.value });
+                onEditProfaile(newUser);
                 if (img.value) {
                     const URL_PATTERN = /^https?:\/\/(.+)/;
                 }
-                onEditProfaile({ authToken: user.authToken, _id: user._id, name: newUser.name, username: newUser.username, img: newUser.img })
+
             } catch (error) {
                 onEditProfaile({ ...user })
                 throw new Error(error.message)
@@ -60,7 +60,7 @@ export const MyProfaile = () => {
                 <div className='edit-profaile' onClick={onEditUserProfaileHandler}>Edit profile</div>
             </div>
 
-            <div className="my-pets" onClick={MyPetsHandler}>
+            <div className="my-pets" >
                 <h2>My lost pets</h2>
                 {myPets ? myPets.map(pet => <Pet key={pet._id} pet={pet} />) : <h1>No pets in database</h1>}
             </div>
