@@ -2,13 +2,12 @@ import './EditPage.css'
 import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import * as api from '../../api/data'
-import { PetContext } from '../../contexts/PetContext';
-import { PetContexts } from '../../contexts/PetContexts';
 import { ValidationContexts } from '../../contexts/validationContext';
 
 export const EditPage = () => {
     const { validateFormData, validationForm } = useContext(ValidationContexts);
     const [pet, setPet] = useState({});
+    
     const params = useParams();
     const id = params.id;
     const navigate = useNavigate();
