@@ -21,12 +21,10 @@
     display: block;
     margin-block-end: 1em;
     width: 500px;
-    height: auto;
+    max-height: 900px;
     padding: 1px;
     background-color: rgb(239, 239, 245);
     border-radius: 5px;
-    /* padding-top: 100px; */
-
 }
 
 .description-details {

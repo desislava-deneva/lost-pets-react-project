@@ -18,7 +18,8 @@ export const PetProviders = ({
                 return [...state, action.payload]
             case 'PET_DETAILS':
             case 'EDIT_PET':
-                return state.map(x => x._id === action._id ? action.payload : x);
+                return state.map(x => x._id === action._id ? action.payload : action.payload);
+                
             case 'ADD_COMMENT':
                 const pet = state.map(x => x._id === action._id);
                 const comments = pet['comments'];
@@ -29,7 +30,9 @@ export const PetProviders = ({
             default:
                 return state;
         }
+
     }
+    
     const [pets, dispatcher] = useReducer(petReducer, [])
 
     useEffect(() => {

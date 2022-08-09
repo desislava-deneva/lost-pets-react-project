@@ -2,7 +2,7 @@ import './Details.css'
 import { EditDeleteButtons } from '../EditDeleteButtons/EditDeleteButtons'
 import { useState, useEffect, useContext } from 'react';
 import { Likes } from '../Likes/Likes';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { GoogleMap } from '../GoogleMap/GoogleMap';
 import { Comments } from '../Comments/Comments'
 import * as api from '../../api/data';
@@ -11,7 +11,6 @@ export const Details = (props) => {
 
     const [pet, setPet] = useState({});
     const { delPet } = useContext(PetContexts);
-    const navigate = useNavigate()
     const userId = sessionStorage.userId;
     const params = useParams();
     const id = params.id;
@@ -62,7 +61,7 @@ export const Details = (props) => {
                         : ""
                     }
                 </div>
-                <Comments comments={{ comments: pet.comments, pet }} />
+                <Comments key={pet._id} comments={{ comments: pet.comments, pet }} />
             </div>
             <GoogleMap />
         </article>

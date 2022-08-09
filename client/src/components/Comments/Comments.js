@@ -4,10 +4,13 @@ import { useParams } from 'react-router-dom';
 import { PetContexts } from '../../contexts/PetContexts';
 
 import * as api from '../../api/data';
+import { AuthContext } from '../../contexts/AuthContext';
 export const Comments = ({
     comments
 }) => {
     const { getPet, addComment } = useContext(PetContexts)
+    const { user } = useContext(AuthContext);
+
     const [comment, setComment] = useState('');
 
     const params = useParams();
@@ -23,7 +26,7 @@ export const Comments = ({
         const textareaEl = parent.querySelector('textarea');
         textareaEl.value = '';
     }
-    const isAuth = sessionStorage.length
+    const isAuth = user.username ? true: false;
 
     const changeHandler = (e) => {
         setComment(state => ({ ...state, [e.target.name]: e.target.value }));
@@ -34,7 +37,7 @@ export const Comments = ({
             <h2>Comments:</h2>
             <ul>
                 {pet?.comments.length > 0 ? pet.comments.map(x => <li>{x}</li>) : <h4>No comments yet...</h4>}
-                {isAuth.length > 0 ?
+                {isAuth ?
                     <>
                         <label className='label-comments'>Add new comment:</label>
 
@@ -44,7 +47,7 @@ export const Comments = ({
                     </>
                     : null}
 
-                {isAuth.length > 0 ?
+                {isAuth ?
                     <button className='comment-button' onClick={addCommentHandler}>Comment</button>
                     : null}
 

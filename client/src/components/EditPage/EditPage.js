@@ -31,6 +31,7 @@ export const EditPage = () => {
         } else {
             await api.editRecord(id, petData);
             petEdit(id, petData)
+            console.log();
             navigate('/catalog')
         }
     }
