@@ -63,6 +63,10 @@ export const PetProviders = ({
         }
     }
 
+    const getPet = (id) => {
+
+    }
+
     const petDetails = (_id, petDetails) => {
         dispatcher({
             type: 'PET_DETAILS',
