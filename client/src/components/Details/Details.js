@@ -10,7 +10,7 @@ import { PetContexts } from '../../contexts/PetContexts';
 export const Details = (props) => {
 
     const [pet, setPet] = useState({});
-    const { pets, delPet } = useContext(PetContexts);
+    const { delPet } = useContext(PetContexts);
     const navigate = useNavigate()
     const userId = sessionStorage.userId;
     const params = useParams();
@@ -57,12 +57,12 @@ export const Details = (props) => {
 
                     {userId !== undefined && pet.owner === userId ?
                         <div>
-                            <EditDeleteButtons pet={{pet, deleteHandler}} />
+                            <EditDeleteButtons pet={{ pet, deleteHandler }} />
                         </div>
                         : ""
                     }
                 </div>
-                <Comments comments={pet.comments} />
+                <Comments comments={{ comments: pet.comments, pet }} />
             </div>
             <GoogleMap />
         </article>

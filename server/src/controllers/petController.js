@@ -30,7 +30,8 @@ router.post('/', isAuth(), async (req, res) => {
         img: req.body.img,
         likes: [],
         description: req.body.description,
-        owner: req.user._id
+        owner: req.user._id,
+        comments:[]
     };
 
     console.log(item)
@@ -117,14 +118,12 @@ router.post('/comment/:id', preload(api), async (req, res) => {
     console.log('in post /comment/:id')
 
     const id = req.params.id;
-    console.log(id)
-    console.log(req.body);
 
     try {
         const item = await api.comments(id, req.body.comment);
-        console.log(item)
+        console.log(item.comments)
         if (item) {
-            res.status(200).json(item)
+            res.status(200).json(item.comments)
         }
 
     } catch (err) {
