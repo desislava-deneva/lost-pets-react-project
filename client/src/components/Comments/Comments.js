@@ -5,6 +5,7 @@ import { PetContexts } from '../../contexts/PetContexts';
 
 import * as api from '../../api/data';
 import { AuthContext } from '../../contexts/AuthContext';
+import image from './profaile.jpg'
 export const Comments = ({
     comments
 }) => {
@@ -18,7 +19,7 @@ export const Comments = ({
 
     const addCommentHandler = async (e) => {
         await api.postCommentById(comments.pet._id, comment);
-        addComment(comments.pet._id, { username: user.username, comment: comment.comment });
+        addComment(comments.pet._id, { userImg: user.img, username: user.username, comment: comment.comment });
 
         const parent = e.target.parentElement;
         const textareaEl = parent.querySelector('textarea');
@@ -36,7 +37,7 @@ export const Comments = ({
         <div className="comments" >
             <h2>Comments:</h2>
             <ul>
-                {pet?.comments.length > 0 ? pet.comments.map(x => <li><strong>{x.username} commented:</strong> {'\n'}{x.comment}</li>) : <h4>No comments yet...</h4>}
+                {pet?.comments.length > 0 ? pet.comments.map(x => <><li><img src={x.userImg ? x.userImg : image} alt="img" /><strong> {x.username} commented:</strong> {'\n'}{x.comment}</li></>) : <h4>No comments yet...</h4>}
                 {isAuth ?
                     <>
                         <label className='label-comments'>Add new comment:</label>

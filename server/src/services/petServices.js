@@ -90,7 +90,7 @@ async function deleteById(id) {
 async function comments(id, data) {
 
     const item = await Item.findById(id);
-    
+
     item.comments.push(data);
     await item.save();
     return item;

@@ -12,3 +12,9 @@
 .comments>h2{
     margin: 0px;
 }
+
+.comments>ul>li>img{
+    width: 60px;
+    height: auto;
+    border-radius: 5px;
+}

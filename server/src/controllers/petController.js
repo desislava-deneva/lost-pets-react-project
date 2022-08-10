@@ -6,8 +6,6 @@ const api = require('../services/petServices');
 const errorMapper = require('../util/errorMapper');
 const Comment = require('../models/Comment');
 
-
-
 router.get('/', async (req, res) => {
     console.log('in get /')
     try {
@@ -78,7 +76,6 @@ router.delete('/:id', preload(api), isAuth(), isOwner(), async (req, res) => {
 router.get('/:id/like', preload(api), async (req, res) => {
     res.json(res.locals.item);
     console.log('in get /:id/like')
-
 })
 
 router.post('/:id/like', preload(api), isAuth(), async (req, res) => {
@@ -112,15 +109,17 @@ router.post('/:id/unlike', preload(api), isAuth(), async (req, res) => {
 router.get('/comment/:id', preload(api), async (req, res) => {
     res.json(res.locals.item.comments);
     console.log('in get /comment/:id')
+
 })
 
 router.post('/comment/:id', preload(api), async (req, res) => {
     console.log('in post /comment/:id')
 
     const id = req.params.id;
-    const user = req.user.username;
+    const user = req.user;
+
     try {
-        const item = await api.comments(id, { username: user, comment: req.body.comment });
+        const item = await api.comments(id, { userImg: user.img, username: user.username, comment: req.body.comment });
         console.log(item.comments)
         if (item) {
             res.status(200).json(item.comments)

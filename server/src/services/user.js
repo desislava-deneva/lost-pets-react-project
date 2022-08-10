@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
 
-
 const blacklist = new Set();
 
 const JWT_SECRET = 't gcsergcserg  b920n3w4pc[w3tcawert6v9';
@@ -23,7 +22,7 @@ async function register(name, username, password) {
         name,
         username,
         hashedPassword,
-        img: ''
+        img: ""
     });
 
     await user.save();
