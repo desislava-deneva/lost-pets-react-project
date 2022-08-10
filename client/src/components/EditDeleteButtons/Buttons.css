@@ -1,5 +1,5 @@
 #edit-delete-buttons>a, #isFount {
-    background-color: #cec5c5; /* Green */
+    background-color: #cec5c5;
     padding: 15px 32px;
     text-align: center;
     display: inline-block;
@@ -10,6 +10,7 @@
   
   #edit-delete-buttons>a:hover {
     background-color: #b9afaf;
+    cursor: pointer;
 
     
 }
@@ -22,4 +23,8 @@
 #isFount:hover{
   text-transform: uppercase;
     cursor: pointer;
+}
+
+.edit-delete-buttons{
+  margin-top: 20px;
 }

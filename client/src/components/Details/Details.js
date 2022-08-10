@@ -39,8 +39,10 @@ export const Details = (props) => {
     }
 
     return (
-        <article id='details-page' className='details-page'>
-            <h1>Details</h1>
+        <>
+        <h1>Details</h1>
+
+        <article id='details-page' className='details-page center'>
             <div className="flex-container">
                 <div className="details-pet">
                     <img src={pet.img} alt={pet.name} />
@@ -61,10 +63,11 @@ export const Details = (props) => {
                         : ""
                     }
                 </div>
-                <Comments key={pet._id} comments={{ comments: pet.comments, pet }} />
             </div>
-            <GoogleMap />
+            <Comments key={pet._id} comments={{ comments: pet.comments, pet }} />
         </article>
+        <GoogleMap />
+        </>
 
     )
 }

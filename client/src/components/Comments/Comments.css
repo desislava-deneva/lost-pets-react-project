@@ -6,11 +6,9 @@
 
 .label-comments {
     background-color: rgb(255, 255, 255);
-    padding: 5px;
-    margin: 10px;
     border-radius: 5px;
 }
 
 .comments{
-    margin: 50px;
+    margin: 30px;
 }
