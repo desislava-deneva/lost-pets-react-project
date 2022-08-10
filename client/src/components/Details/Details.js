@@ -41,7 +41,6 @@ export const Details = (props) => {
     return (
         <>
         <h1>Details</h1>
-
         <article id='details-page' className='details-page center'>
             <div className="flex-container">
                 <div className="details-pet">

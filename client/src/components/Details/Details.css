@@ -63,9 +63,8 @@ h5 {
 }
 
 .details-page{
-    padding-top: 50px;
     display: flex;
-    margin: 200px;
+    margin: 60px;
     width: 1080px;
     height: auto;
 }

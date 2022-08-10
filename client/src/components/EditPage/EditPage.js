@@ -8,7 +8,7 @@ import { PetContexts } from '../../contexts/PetContexts';
 
 export const EditPage = () => {
     const { validateFormData, validationForm } = useContext(ValidationContexts);
-    const { petEdit } = useContext(PetContexts)
+    const { petEdit, getPet } = useContext(PetContexts)
     const [pet, setPet] = useState({});
 
     const params = useParams();
@@ -31,8 +31,8 @@ export const EditPage = () => {
         } else {
             await api.editRecord(id, petData);
             petEdit(id, petData)
-            console.log();
-            navigate('/catalog')
+            setPet(getPet(id))
+            navigate('/details/' + id, { replace: true })
         }
     }
 

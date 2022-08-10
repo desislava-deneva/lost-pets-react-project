@@ -5,7 +5,7 @@ import { PetContexts } from '../../contexts/PetContexts';
 
 export const Catalog = () => {
     const { pets, onSelectSort} = useContext(PetContexts);
-
+    console.log(pets)
     return (
 
         <div className="calalog" >

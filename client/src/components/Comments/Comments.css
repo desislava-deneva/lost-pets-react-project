@@ -9,6 +9,6 @@
     border-radius: 5px;
 }
 
-.comments{
-    margin: 30px;
+.comments>h2{
+    margin: 0px;
 }

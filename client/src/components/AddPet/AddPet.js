@@ -22,7 +22,7 @@ export const AddPet = () => {
                 .then(result => {
                     addPet(result)
                 })
-                
+
             navigate('/catalog')
         }
     }
@@ -40,7 +40,7 @@ export const AddPet = () => {
                     <input type="text" name="img" className="add-input" id="img" placeholder="http:// or https://"/>
                     <p className={validationForm.img ? 'valid-inputs' : 'errors'}>Image must be a valid URL</p>
 
-                    <label htmlFor="dataLost">Data of lost:</label>
+                    <label htmlFor="dataLost">Date of lost:</label>
                     <input type="text" id="dataLost" className="add-input" name="dataLost" placeholder="19.06.2022"  />
                     <p className={validationForm.dataLost ? 'valid-inputs' : 'errors'}>The Date should be at 10 characters long</p>
 
@@ -53,7 +53,7 @@ export const AddPet = () => {
                     <p className={validationForm.neighborhood ? 'valid-inputs' : 'errors'}>The Neighborhood should be at least 3 characters long</p>
 
                     <label htmlFor="birthYear">Birth Year:</label>
-                    <input type="text" id="birthYear" className="add-input" name="birthYear" placeholder="2009"  />
+                    <input type="number" id="birthYear" className="add-input" name="birthYear" placeholder="2009"  />
                     <p className={validationForm.birthYear ? 'valid-inputs' : 'errors'}>Year must be min 2000 and max 2022</p>
 
                     <label htmlFor="species">Species:</label>

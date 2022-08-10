@@ -26,14 +26,21 @@ export const MyProfaile = () => {
             const { img, name, username } = document.getElementsByTagName('input');
             setIsEdit(false);
             try {
+                if (img.value) {
+                    const URL_PATTERN = /^https?:\/\/(.+)/;
+
+                    if (!URL_PATTERN.test(img.value)) {
+                        alert('Url is not correct format');
+                        img.value = '';
+                    }
+                }
+
                 api.updateUserProfaile({ authToken: user.authToken, _id: user._id, name: name.value, username: username.value, img: img.value })
                     .then(res => {
                         onEditProfaile(res);
                     })
 
-                if (img.value) {
-                    const URL_PATTERN = /^https?:\/\/(.+)/;
-                }
+
 
             } catch (error) {
                 onEditProfaile({ ...user })
