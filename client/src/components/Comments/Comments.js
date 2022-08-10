@@ -16,27 +16,27 @@ export const Comments = ({
     const params = useParams();
     const id = params.id;
 
-    const pet = getPet(id);
-
     const addCommentHandler = async (e) => {
         await api.postCommentById(comments.pet._id, comment);
-        addComment(comments.pet._id, comment);
+        addComment(comments.pet._id, { username: user.username, comment: comment.comment });
 
         const parent = e.target.parentElement;
         const textareaEl = parent.querySelector('textarea');
         textareaEl.value = '';
     }
-    const isAuth = user.username ? true: false;
+    const isAuth = user.username ? true : false;
 
     const changeHandler = (e) => {
         setComment(state => ({ ...state, [e.target.name]: e.target.value }));
     }
 
+    const pet = getPet(id);
+
     return (
         <div className="comments" >
             <h2>Comments:</h2>
             <ul>
-                {pet?.comments.length > 0 ? pet.comments.map(x => <li>{x}</li>) : <h4>No comments yet...</h4>}
+                {pet?.comments.length > 0 ? pet.comments.map(x => <li><strong>{x.username} commented:</strong> {'\n'}{x.comment}</li>) : <h4>No comments yet...</h4>}
                 {isAuth ?
                     <>
                         <label className='label-comments'>Add new comment:</label>
@@ -52,7 +52,7 @@ export const Comments = ({
                     : null}
 
             </ul>
-        </div>
+        </div >
     )
 }
 

@@ -7,8 +7,6 @@ export const PetContexts = createContext();
 export const PetProviders = ({
     children
 }) => {
-    const navigate = useNavigate();
-
     const petReducer = (state, action) => {
 
         switch (action.type) {
@@ -22,16 +20,14 @@ export const PetProviders = ({
                 editPet = action.payload;
                 return [...state, action.payload]
             case 'ADD_COMMENT':
-                const pet = state.map(x => x._id === action._id);
-                const comments = pet['comments'];
-                console.log(comments)
-                return state.map(x => x._id === action._id ? { ...x, comments: [...x.comments, Object.values(action.payload).toString()] } : x);
+                const pet = state.find(x => x._id === action._id);
+                const actionP = action.payload;
+                return state.map(x => x._id === action._id ? { ...x, comments: [...x.comments, actionP] } : x);
             case 'DELETE_PET':
                 return state.filter(x => x._id !== action._id);
             default:
                 return state;
         }
-
     }
 
     const [pets, dispatcher] = useReducer(petReducer, [])
@@ -73,7 +69,6 @@ export const PetProviders = ({
         return pets.find(x => x._id === id);
     }
     const addComment = (_id, comment) => {
-        getPet(_id)
         dispatcher({
             type: 'ADD_COMMENT',
             payload: comment,
@@ -95,7 +90,6 @@ export const PetProviders = ({
             payload: petData,
             _id,
         });
-
     };
 
     const delPet = (_id) => {
@@ -103,7 +97,6 @@ export const PetProviders = ({
             type: 'DELETE_PET',
             _id
         })
-        // navigate('/catalog')
     }
 
     return (
