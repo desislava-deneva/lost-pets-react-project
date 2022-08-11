@@ -1,0 +1,11 @@
+.not-found {
+    background-image: url("./notFound.png");
+    background-color: var(--main-background-color);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

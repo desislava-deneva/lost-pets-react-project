@@ -14,6 +14,7 @@ import { AuthProvider } from './contexts/AuthContext'
 import { PetProviders } from './contexts/PetContexts'
 import { ValidationProviders } from './contexts/validationContext';
 import { Footer } from './components/Footer/Footer';
+import { NotFound } from './components/NotFound/NotFound';
 function App() {
 
 
@@ -33,6 +34,7 @@ function App() {
               <Route path='/edit/:id' element={<EditPage />} />
               <Route path='/my-profail' element={<MyProfaile />} />
               <Route path='/logout' element={<Logout />} />
+              <Route path='*' element={<NotFound />} />
             </Routes>
             <Footer />
           </ValidationProviders>
