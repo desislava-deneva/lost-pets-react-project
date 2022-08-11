@@ -51,7 +51,7 @@ export const Comments = ({
 
                 {isAuth ?
                     <button className='comment-button' onClick={addCommentHandler}>Comment</button>
-                    : <h3>If you want to comment this publication, pleace <Link to="/login" className="button" >login</Link></h3>
+                    : <h5>If you want to comment this publication, pleace <Link to="/login" className="button" >login</Link></h5>
                 }
 
             </ul>

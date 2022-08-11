@@ -13,7 +13,7 @@ import { MyProfaile } from './components/MyProfaile/MyProfaile';
 import { AuthProvider } from './contexts/AuthContext'
 import { PetProviders } from './contexts/PetContexts'
 import { ValidationProviders } from './contexts/validationContext';
-
+import { Footer } from './components/Footer/Footer';
 function App() {
 
 
@@ -34,6 +34,7 @@ function App() {
               <Route path='/my-profail' element={<MyProfaile />} />
               <Route path='/logout' element={<Logout />} />
             </Routes>
+            <Footer />
           </ValidationProviders>
         </PetProviders>
       </div>
