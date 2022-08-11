@@ -50,3 +50,10 @@
   left:5px;
   top:0px;
 }
+.navbar>input{
+  padding: 5px;
+  position: fixed;
+  top: 20px;
+  left: 160px;
+  width: 200px;
+}
