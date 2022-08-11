@@ -41,7 +41,7 @@ export const Likes = (props) => {
   }
 
   return (
-    <div className="like-button" onClick={() => { onClickLikeHandler() }}>
+    userId && <div className="like-button" onClick={() => { onClickLikeHandler() }}>
       <img src={isLiked ? likeHand : unlikeHand} alt="png" className="like-img" />
       <span>{countLikes} </span>
     </div>

@@ -2,6 +2,8 @@ import './Comments.css';
 import { useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { PetContexts } from '../../contexts/PetContexts';
+import { Link } from 'react-router-dom';
+
 
 import * as api from '../../api/data';
 import { AuthContext } from '../../contexts/AuthContext';
@@ -32,7 +34,6 @@ export const Comments = ({
     }
 
     const pet = getPet(id);
-
     return (
         <div className="comments" >
             <h2>Comments:</h2>
@@ -50,7 +51,8 @@ export const Comments = ({
 
                 {isAuth ?
                     <button className='comment-button' onClick={addCommentHandler}>Comment</button>
-                    : null}
+                    : <h3>If you want to comment this publication, pleace <Link to="/login" className="button" >login</Link></h3>
+                }
 
             </ul>
         </div >

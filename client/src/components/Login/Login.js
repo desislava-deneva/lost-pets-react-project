@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import { useContext } from 'react';
 import * as api from '../../api/data'
+import { Link } from 'react-router-dom';
 
 export const Login = () => {
     const { onLogin } = useContext(AuthContext)
@@ -32,6 +33,7 @@ export const Login = () => {
                     <input type="username" id="username" name="username" className="login-input" placeholder="Username" />
                     <input type="password" id="password" name="password" className="login-input" placeholder="Password" />
                     <input type="submit" className="login-submit" value="Sign up" />
+                   <span>You don't have a profaile click <b><Link to="/register" className="button" >register</Link></b></span> 
                 </form>
             </section>
         </section>

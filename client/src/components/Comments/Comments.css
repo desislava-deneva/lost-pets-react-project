@@ -9,12 +9,18 @@
     border-radius: 5px;
 }
 
-.comments>h2{
+.comments>h2 {
     margin: 0px;
 }
 
-.comments>ul>li>img{
-    width: 60px;
-    height: auto;
-    border-radius: 5px;
+.comments>ul>li>img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+}
+
+.comments>ul>h3 {
+    margin: 100px;
+    width: 300px;
+    color: brown;
 }

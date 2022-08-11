@@ -1,6 +1,6 @@
 import './Register.css';
 // import { useContext, createContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as api from '../../api/data'
 
 import { AuthContext } from '../../contexts/AuthContext';
@@ -92,6 +92,7 @@ export const Register = () => {
 
                     <input type="password" id="repass" name="repass" className="register-input" placeholder="Confirm password" />
                     <input type="submit" className="register-submit" value="Register" />
+                    <span>You have a profaile click <b><Link to="/login" className="button" >login</Link></b></span> 
                 </form>
             </section>
         </section>
