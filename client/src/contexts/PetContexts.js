@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect } from "react";
+import { createContext, useReducer, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as api from '../api/data'
 
@@ -16,9 +16,8 @@ export const PetProviders = ({
                 return [...state, action.payload]
             case 'PET_DETAILS':
             case 'EDIT_PET':
-                let editPet = state.map(x => x._id === action._id);
-                editPet = action.payload;
-                return [...state, action.payload]
+                state = state.map(x => x._id === action._id ? { ...x, ...action.payload } : x);
+                return [...state]
             case 'ADD_COMMENT':
                 const pet = state.find(x => x._id === action._id);
                 const actionP = action.payload;
@@ -31,7 +30,8 @@ export const PetProviders = ({
     }
 
     const [pets, dispatcher] = useReducer(petReducer, [])
-
+    const [filterPets, setFilterPets] = useState('')
+    const navigate = useNavigate();
     useEffect(() => {
         api.getPets()
             .then(result => {
@@ -97,10 +97,28 @@ export const PetProviders = ({
             type: 'DELETE_PET',
             _id
         })
+
+        navigate('/catalog')
+    }
+
+    const onSearchHandler = (e) => {
+        e.preventDefault()
+        const parentEl = e.target.parentElement;
+        const searchedText = parentEl.querySelector('input')
+        if (parentEl) {
+            const test = pets.filter(x => x.name.toLowerCase().includes(searchedText.value.toLowerCase()))
+            setFilterPets(test);
+        }
+        searchedText.value = ''
+    }
+
+    const onClear = (e) => {
+        e.preventDefault()
+        setFilterPets(null)
     }
 
     return (
-        <PetContexts.Provider value={{ pets, addPet, onSelectSort, petEdit, petDetails, delPet, getPet, addComment }}>
+        <PetContexts.Provider value={{ pets, addPet, onSelectSort, petEdit, petDetails, delPet, getPet, addComment, onSearchHandler, onClear, filterPets }}>
             {children}
         </PetContexts.Provider>
     )

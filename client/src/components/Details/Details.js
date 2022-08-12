@@ -7,7 +7,8 @@ import { GoogleMap } from '../GoogleMap/GoogleMap';
 import { Comments } from '../Comments/Comments'
 import * as api from '../../api/data';
 import { PetContexts } from '../../contexts/PetContexts';
-export const Details = (props) => {
+
+export const Details = () => {
 
     const [pet, setPet] = useState({});
     const { delPet } = useContext(PetContexts);

@@ -22,7 +22,6 @@ export const AddPet = () => {
                 .then(result => {
                     addPet(result)
                 })
-
             navigate('/catalog')
         }
     }

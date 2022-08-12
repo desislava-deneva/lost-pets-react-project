@@ -3,8 +3,6 @@ import { useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { PetContexts } from '../../contexts/PetContexts';
 import { Link } from 'react-router-dom';
-
-
 import * as api from '../../api/data';
 import { AuthContext } from '../../contexts/AuthContext';
 import image from './profaile.jpg'
@@ -58,5 +56,3 @@ export const Comments = ({
         </div >
     )
 }
-
-

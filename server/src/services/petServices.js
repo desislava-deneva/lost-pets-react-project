@@ -47,6 +47,7 @@ async function updateById(existing, item) {
         existing.owner = existing.owner;
     existing.likes = existing.likes;
     existing.comments = existing.comments;
+    existing._id = existing._id
     await existing.save();
 
 
