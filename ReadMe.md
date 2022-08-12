@@ -29,3 +29,15 @@ Logged-in users:
 ==============
 </br>
 Users logged in can read all the information on the site , create comments and  can create, edit, delete their own pets. They cannot edit or delete pets of other users.
+
+
+
+Server
+==============
+</br>
+
+You have to install mongodb https://www.mongodb.com/try/download/community 
+
+1. go to folder server
+2. npm i
+3. npm run start 
