@@ -15,7 +15,7 @@ export const Logout = () => {
                 onLogout()
                 navigate('/')
             })
-    }, [onLogout, navigate]);
+    }, []);
 
     return null;
 }

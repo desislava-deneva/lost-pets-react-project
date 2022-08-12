@@ -7,17 +7,15 @@ import profailePicture from './unisex-image.jpeg';
 import * as api from '../../api/data';
 
 export const MyProfaile = () => {
-
     const { user, onEditProfaile } = useContext(AuthContext);
     const { pets, } = useContext(PetContexts);
     const [isEdit, setIsEdit] = useState(false);
-
     const [myPets, setMyPets] = useState([]);
+
     useEffect(() => {
         const result = pets.filter((x) => x.owner === user._id);
         setMyPets(result);
     }, []);
-
 
     const onEditUserProfaileHandler = async (e) => {
         if (!isEdit) {
@@ -38,9 +36,7 @@ export const MyProfaile = () => {
                 api.updateUserProfaile({ authToken: user.authToken, _id: user._id, name: name.value, username: username.value, img: img.value })
                     .then(res => {
                         onEditProfaile(res);
-                    })
-
-
+                    });
 
             } catch (error) {
                 onEditProfaile({ ...user })
@@ -48,8 +44,7 @@ export const MyProfaile = () => {
             }
         }
     }
-
-
+    
     let nameInput = <input type="name" name='name' placeholder='Ivan Ivanov' />
     let usernameInput = <input type="username" name='username' placeholder='Username' />
     let userImg = <input type="img" name='img' placeholder='Image url' />

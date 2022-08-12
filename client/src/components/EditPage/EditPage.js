@@ -5,7 +5,6 @@ import * as api from '../../api/data'
 import { ValidationContexts } from '../../contexts/validationContext';
 import { PetContexts } from '../../contexts/PetContexts';
 
-
 export const EditPage = () => {
     const { validateFormData, validationForm } = useContext(ValidationContexts);
     const { petEdit, getPet } = useContext(PetContexts)
@@ -20,7 +19,7 @@ export const EditPage = () => {
             .then(result => {
                 setPet(result)
             })
-    }, [])
+    }, []);
 
     const onSubmitHandler = async (e) => {
         e.preventDefault();

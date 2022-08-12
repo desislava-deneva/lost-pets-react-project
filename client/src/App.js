@@ -16,8 +16,6 @@ import { ValidationProviders } from './contexts/validationContext';
 import { Footer } from './components/Footer/Footer';
 import { NotFound } from './components/NotFound/NotFound';
 function App() {
-
-
   return (
     <AuthProvider>
       <div className="App">

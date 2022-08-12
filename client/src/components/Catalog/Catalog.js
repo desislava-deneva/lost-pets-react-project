@@ -5,10 +5,9 @@ import { PetContexts } from '../../contexts/PetContexts';
 import { Search } from '../Search/Search'
 
 export const Catalog = () => {
-    const { pets, onSelectSort, filterPets} = useContext(PetContexts);
-   console.log(pets)
-    return (
+    const { pets, onSelectSort, filterPets } = useContext(PetContexts);
 
+    return (
         <div className="calalog" >
             <div className="dropdown" >
                 <select className="dropbtn" name="sort" onChange={onSelectSort} >
@@ -20,8 +19,7 @@ export const Catalog = () => {
             </div>
             <div className='list'>
                 {
-                    filterPets
-                        ?
+                    filterPets ?
                         <div>
                             <h3 className='search-list'>Search list</h3>
                             {
@@ -30,18 +28,13 @@ export const Catalog = () => {
                                     :
                                     <h4>No mach pets</h4>
                             }
-                        </div>
-                        :
+                        </div> :
 
                         pets ? pets.map(pet => <Pet key={pet._id} pet={pet} />)
                             :
                             <h1>No pets in database</h1>
-
                 }
-
             </div>
         </div>
-
-
     )
 }

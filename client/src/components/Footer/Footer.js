@@ -8,7 +8,7 @@ export const Footer = () => {
     const { user } = useContext(AuthContext)
     const isAuth = user.authToken ? true : false;
     return (
-        isAuth ? 
+        isAuth ?
             <footer className="footer">
                 <div>
                     <b><span>Menu</span></b>
@@ -26,23 +26,20 @@ export const Footer = () => {
                     &copy; Design by Desislava Deneva.
                 </div>
             </footer>
-
             :
-                <footer className="footer">
+            <footer className="footer">
+                <div>
+                    <b><span>Menu</span></b>
                     <div>
-                        <b><span>Menu</span></b>
-                        <div>
-                            <Link to='/catalog'>Catalog</Link>
-                        </div>
-                        <div>
-                            <Link to='/'>Home</Link>
-                        </div>
+                        <Link to='/catalog'>Catalog</Link>
                     </div>
-                    <div className='copy'>
-                        &copy; Design by Desislava Deneva.
+                    <div>
+                        <Link to='/'>Home</Link>
                     </div>
-                </footer>
-
-
+                </div>
+                <div className='copy'>
+                    &copy; Design by Desislava Deneva.
+                </div>
+            </footer>
     );
 }

@@ -21,6 +21,7 @@ export const Likes = (props) => {
 
   const onClickLikeHandler = () => {
     if (isLiked) {
+
       api.postUnLikesById(props.petsId)
         .then((data) => {
           setLikes(data.likes.length)
@@ -28,7 +29,9 @@ export const Likes = (props) => {
         .catch((err) => {
           console.error(err.message);
         });
+
     } else {
+
       api.postLikeById(props.petsId)
         .then((data) => {
           setLikes(data.likes.length)
@@ -38,6 +41,7 @@ export const Likes = (props) => {
         });
     }
     setIsLiked(!isLiked)
+    
   }
 
   return (

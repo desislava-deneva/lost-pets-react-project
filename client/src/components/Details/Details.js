@@ -41,33 +41,32 @@ export const Details = () => {
 
     return (
         <>
-        <h1>Details</h1>
-        <article id='details-page' className='details-page center'>
-            <div className="flex-container">
-                <div className="details-pet">
-                    <img src={pet.img} alt={pet.name} />
-                    <h3>{pet.type} name:  <span>{pet.name}</span></h3>
-                    <h5>Birth Year: <span>{pet.birthYear} year</span></h5>
-                    <h5>Data Of Lost: {pet.dataLost} </h5>
-                    <h5>City: {pet.city}</h5>
-                    <h5>Neighborhood: {pet.neighborhood}</h5>
-                    <div className="description-details">
-                        {pet.description}
-                    </div>
-                    {userId === undefined || pet.owner === userId ? '' : <Likes petsId={id} />}
-
-                    {userId !== undefined && pet.owner === userId ?
-                        <div>
-                            <EditDeleteButtons pet={{ pet, deleteHandler }} />
+            <h1>Details</h1>
+            <article id='details-page' className='details-page center'>
+                <div className="flex-container">
+                    <div className="details-pet">
+                        <img src={pet.img} alt={pet.name} />
+                        <h3>{pet.type} name:  <span>{pet.name}</span></h3>
+                        <h5>Birth Year: <span>{pet.birthYear} year</span></h5>
+                        <h5>Data Of Lost: {pet.dataLost} </h5>
+                        <h5>City: {pet.city}</h5>
+                        <h5>Neighborhood: {pet.neighborhood}</h5>
+                        <div className="description-details">
+                            {pet.description}
                         </div>
-                        : ""
-                    }
-                </div>
-            </div>
-            <Comments key={pet._id} comments={{ comments: pet.comments, pet }} />
-        </article>
-        <GoogleMap />
-        </>
+                        {userId === undefined || pet.owner === userId ? '' : <Likes petsId={id} />}
 
+                        {userId !== undefined && pet.owner === userId ?
+                            <div>
+                                <EditDeleteButtons pet={{ pet, deleteHandler }} />
+                            </div>
+                            : ""
+                        }
+                    </div>
+                </div>
+                <Comments key={pet._id} comments={{ comments: pet.comments, pet }} />
+            </article>
+            <GoogleMap />
+        </>
     )
 }

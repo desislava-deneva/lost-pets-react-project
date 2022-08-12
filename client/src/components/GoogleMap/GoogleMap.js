@@ -1,9 +1,7 @@
 import './GoogleMap.css'
 
-
 export const GoogleMap = (props)=>{
     return (
-        
         <div key="map" className="gmap" >
         <h2 >Click to search this Location</h2>
         <div>
