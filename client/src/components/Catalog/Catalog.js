@@ -23,10 +23,10 @@ export const Catalog = () => {
                         <div>
                             <h3 className='search-list'>Search list</h3>
                             {
-                                filterPets ?
+                                filterPets.length > 0 ?
                                     filterPets.map(pet => <Pet key={pet._id} pet={pet} />)
                                     :
-                                    <h4>No mach pets</h4>
+                                    <h4 className='no-match'>No mach pets</h4>
                             }
                         </div> :
 

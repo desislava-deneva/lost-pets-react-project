@@ -20,14 +20,15 @@
   margin: 70px;
   content: center;
   border-radius: 5px;
-  border: 0px 
+  border: 0px
 }
 
 .dropdown {
   float: left;
   padding: 5px;
 }
-.dropdown>h5{
+
+.dropdown>h5 {
   float: left;
   padding: 5px;
 }
@@ -58,12 +59,17 @@
   background-color: rgb(238, 227, 227);
 }
 
-.list>h1{
+.list>h1 {
   padding-top: 200px;
 }
 
-.search-list{
+.search-list {
   top: 0;
   padding: 0;
+  border-radius: 5px;;
+  background-color:  #d6cfcf;
+}
 
+.no-match {
+  background-color: rgb(226, 128, 128);
 }
