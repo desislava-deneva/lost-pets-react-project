@@ -25,6 +25,7 @@ p {
 .imageList {
     width: 230px;
     height: 160px;
+    border-radius: 5px;
 }
 
 .pet-description {

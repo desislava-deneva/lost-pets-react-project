@@ -13,6 +13,9 @@
 .register {
     display: flex;
     flex-direction: column;
+    background-color: rgb(184, 222, 224);
+    border-radius: 5px;
+    padding: 20px;
 }
 
 .register-title {
