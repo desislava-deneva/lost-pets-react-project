@@ -1,0 +1,21 @@
+.search-form {
+    padding: 5px;
+    position: fixed;
+    top: 20px;
+    left: 160px;
+    width: 200px;
+    display: flex;
+}
+
+.search-form>button {
+    background-color: #cec5c5;
+    padding: 6px 6px;
+    text-align: center;
+    border-radius: 5px;
+    border: 0;
+}
+
+.search-form>button:hover {
+    background-color: #b9afaf;
+    cursor: pointer;
+}

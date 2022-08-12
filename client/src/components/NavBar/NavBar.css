@@ -14,13 +14,13 @@
   font-weight: bold;
 }
 
-.logout-end{
-  position:fixed;
-   right:15px;
-   top:0px;
+.logout-end {
+  position: fixed;
+  right: 15px;
+  top: 0px;
 }
 
-.nav a{
+.nav a {
   color: black;
   margin: 30px 30px;
 }
@@ -46,14 +46,7 @@
   padding: 10px;
 }
 
-.navbar>img{
-  left:5px;
-  top:0px;
-}
-.navbar>input{
-  padding: 5px;
-  position: fixed;
-  top: 20px;
-  left: 160px;
-  width: 200px;
+.navbar>img {
+  left: 5px;
+  top: 0px;
 }

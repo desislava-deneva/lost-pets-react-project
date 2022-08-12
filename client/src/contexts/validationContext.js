@@ -7,7 +7,7 @@ export const ValidationProviders = ({
 }) => {
     const [validationForm, setValidationForm] = useState({ name: '', img: '', dataLost: '', city: '', neighborhood: '', type: '', description: '' });
 
-    const validateFormData = (e) => {
+    const validateFormData = (e, ) => {
         const eventValue = e.target.value;
         const eventName = e.target.name;
 

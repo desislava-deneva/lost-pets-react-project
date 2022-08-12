@@ -2,7 +2,7 @@ import './NavBar.css';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import { useContext } from 'react';
-
+import { Search } from '../Search/Search'
 export const NavBar = () => {
     const { user } = useContext(AuthContext);
 
@@ -31,9 +31,8 @@ export const NavBar = () => {
                     <Link to="/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYJFkg33PO4QnK06474BVqODtbAstj29jqGA&usqp=CAU" alt="home" className="home-jpg" /></Link>
                     {user._id ? userNav : guestNav}
                 </div>
-                <input type="text" placeholder="Search.."></input>
-
+                <Search />
             </nav>
-        </header>
+        </header >
     );
 };
