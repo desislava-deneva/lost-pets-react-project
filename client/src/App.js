@@ -32,8 +32,8 @@ function App() {
                 <Route path="/catalog" element={<Catalog />} />
                 <Route path="/create" element={<AddPet />} />
                 <Route path='/edit/:id' element={<EditPage />} />
-                <Route path='/my-profail' element={<MyProfaile />} />
               </Route>
+              <Route path='/my-profail' element={<MyProfaile />} />
               <Route path='/details/:id' element={<Details />} />
               <Route path='/logout' element={<Logout />} />
               <Route path='*' element={<NotFound />} />

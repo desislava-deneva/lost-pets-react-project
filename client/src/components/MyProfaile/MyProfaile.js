@@ -33,7 +33,8 @@ export const MyProfaile = () => {
                     }
                 }
 
-                api.updateUserProfaile({ authToken: user.authToken, _id: user._id, name: name.value, username: username.value, img: img.value })
+                const usernameValue = username.value ? username.value : user.username;
+                api.updateUserProfaile({ authToken: user.authToken, _id: user._id, name: name.value, username: usernameValue, img: img.value })
                     .then(res => {
                         onEditProfaile(res);
                     });
@@ -44,7 +45,7 @@ export const MyProfaile = () => {
             }
         }
     }
-    
+
     let nameInput = <input type="name" name='name' placeholder='Ivan Ivanov' />
     let usernameInput = <input type="username" name='username' placeholder='Username' />
     let userImg = <input type="img" name='img' placeholder='Image url' />

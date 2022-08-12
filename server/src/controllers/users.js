@@ -29,7 +29,6 @@ router.post('/login', async (req, res) => {
 router.get('/my-profail/:id', isAuth(), async (req, res) => {
 
     const { user } = req.body;
-    console.log(user)
     try {
         const result = await api.getUserByUsername(user.username);
         res.json(result);

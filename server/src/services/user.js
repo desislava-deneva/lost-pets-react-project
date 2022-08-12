@@ -90,10 +90,10 @@ async function updateUserInfo(id, newUser) {
     if (!id) {
         throw new Error('Id not existing');
     }
-
+    
     const isExistingThisUsername = await User.findOne({ username: new RegExp(`^${newUser?.username}$`, 'i') });
 
-    if (isExistingThisUsername && isExistingThisUsername.hasOwnProperty('username') && newUser.hasOwnProperty('username')) {
+    if (isExistingThisUsername && isExistingThisUsername.username && newUser.hasOwnProperty('username')) {
         if (isExistingThisUsername.username == newUser?.username && newUser._id != isExistingThisUsername._id) {
             throw new Error('Username is taken');
         }
