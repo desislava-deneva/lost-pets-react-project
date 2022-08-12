@@ -2,9 +2,10 @@ import './Catalog.css'
 import { Pet } from '../Pet/Pet'
 import { useContext } from 'react';
 import { PetContexts } from '../../contexts/PetContexts';
+import { Search } from '../Search/Search'
 
 export const Catalog = () => {
-    const { pets, onSelectSort} = useContext(PetContexts);
+    const { pets, onSelectSort } = useContext(PetContexts);
     console.log(pets)
     return (
 
@@ -15,6 +16,7 @@ export const Catalog = () => {
                     <option value="name">Name</option>
                     <option value="city">City</option>
                 </select>
+                <Search />
             </div>
             <div className='list'>
                 {
@@ -22,5 +24,7 @@ export const Catalog = () => {
                 }
             </div>
         </div>
+
+
     )
 }
