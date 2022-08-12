@@ -104,7 +104,7 @@ export const PetProviders = ({
     const onSearchHandler = (e) => {
         e.preventDefault()
         const parentEl = e.target.parentElement;
-        const searchedText = parentEl.querySelector('input')
+        const searchedText = parentEl.querySelector('input');
         if (parentEl) {
             const test = pets.filter(x => x.name.toLowerCase().includes(searchedText.value.toLowerCase()))
             setFilterPets(test);

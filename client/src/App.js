@@ -15,6 +15,8 @@ import { PetProviders } from './contexts/PetContexts'
 import { ValidationProviders } from './contexts/validationContext';
 import { Footer } from './components/Footer/Footer';
 import { NotFound } from './components/NotFound/NotFound';
+import { PrivateRouteGard } from './components/PrivateRouteGard/PrivateRouteGard';
+
 function App() {
   return (
     <AuthProvider>
@@ -26,11 +28,13 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/create" element={<AddPet />} />
-              <Route path="/catalog" element={<Catalog />} />
+              <Route element={<PrivateRouteGard />}>
+                <Route path="/catalog" element={<Catalog />} />
+                <Route path="/create" element={<AddPet />} />
+                <Route path='/edit/:id' element={<EditPage />} />
+                <Route path='/my-profail' element={<MyProfaile />} />
+              </Route>
               <Route path='/details/:id' element={<Details />} />
-              <Route path='/edit/:id' element={<EditPage />} />
-              <Route path='/my-profail' element={<MyProfaile />} />
               <Route path='/logout' element={<Logout />} />
               <Route path='*' element={<NotFound />} />
             </Routes>
