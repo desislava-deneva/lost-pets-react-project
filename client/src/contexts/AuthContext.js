@@ -6,7 +6,7 @@ export const AuthContext = createContext();
 export const AuthProvider = (props) => {
     const [user, setUserInfo] = useState({ username: '', authToken: '', _id: '', name: '', img: '' });
 
-    
+
 
     const onLogin = (data) => {
         setUserInfo({ ...user, username: data.username, authToken: data.accessToken, _id: data._id, name: data.name, img: data.img })
@@ -24,7 +24,11 @@ export const AuthProvider = (props) => {
     }
 
     const onEditProfaile = (data) => {
-        setUserInfo({ username: data.username, authToken: data.token, _id: data._id, name: data.name, img: data.img });
+        const img = data.img ? data.img : user.img;
+        const name = data.name ? data.name : user.name;
+        const username = data.username ? data.username : user.username;
+        console.log(img, name, username);
+        setUserInfo({ username, name, img, authToken: user.authToken, _id: user._id, });
         return user;
     }
 
